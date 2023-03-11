@@ -999,17 +999,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vue/devtools-api@npm:^6.1.4, @vue/devtools-api@npm:^6.5.0":
+  version: 6.5.0
+  resolution: "@vue/devtools-api@npm:6.5.0"
+  checksum: ec819ef3a426e91d09e9cfefd2827e9ed8ec9d62bb3b3e0674f3da8c7e92a4b879c3b777dc7329172ca6fe2670b62dd5580d23160339208f0f5ae038f2e504ad
+  languageName: node
+  linkType: hard
+
 "@vue/devtools-api@npm:^6.4.5":
   version: 6.4.5
   resolution: "@vue/devtools-api@npm:6.4.5"
   checksum: 40c5adc8788cb283972ce09ba7ce105fa894f4decec9168829cc8e6211462763402442e6c31be76f9da62b0e74ae724971b924571367b4ac89b94dc6894e2d07
-  languageName: node
-  linkType: hard
-
-"@vue/devtools-api@npm:^6.5.0":
-  version: 6.5.0
-  resolution: "@vue/devtools-api@npm:6.5.0"
-  checksum: ec819ef3a426e91d09e9cfefd2827e9ed8ec9d62bb3b3e0674f3da8c7e92a4b879c3b777dc7329172ca6fe2670b62dd5580d23160339208f0f5ae038f2e504ad
   languageName: node
   linkType: hard
 
@@ -7268,6 +7268,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vee-validate@npm:^4.7.4":
+  version: 4.7.4
+  resolution: "vee-validate@npm:4.7.4"
+  dependencies:
+    "@vue/devtools-api": ^6.1.4
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: f2890602bfd4f722345cec84c8aa3c014591fc2bf339501e130f5a8acd3b71a8ddcd220984ebcf1c739a7e153914f812acac4b02825f2d78f73e4ab6c52585d7
+  languageName: node
+  linkType: hard
+
 "vite-node@npm:0.29.2":
   version: 0.29.2
   resolution: "vite-node@npm:0.29.2"
@@ -7397,6 +7408,7 @@ __metadata:
     stylelint-config-recommended-vue: ^1.4.0
     stylelint-order: ^6.0.3
     typescript: ^4.9.5
+    vee-validate: ^4.7.4
     vite: ^4.1.4
     vite-plugin-checker: 0.5.6
     vite-plugin-vuetify: ^1.0.2
