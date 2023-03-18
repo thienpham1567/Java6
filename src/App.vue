@@ -17,8 +17,6 @@ import { useGlobal, useConfig } from '@/store';
 import AppBarMenuComponent from '@/components/AppBarMenuComponent.vue';
 import DrawerComponent from '@/components/DrawerComponent.vue';
 
-import logo from '@/assets/logo.svg';
-
 /** Vuetify Theme */
 const theme = useTheme();
 
@@ -133,42 +131,3 @@ onMounted(() => {
   </teleport>
 </template>
 
-<style lang="scss">
-@use 'vuetify/settings';
-
-html {
-  // Fix always scrollbar shown.
-  overflow-y: auto;
-  // Modern scrollbar style
-  scrollbar-width: thin;
-  scrollbar-color: map-get(settings.$grey, 'lighten-2')
-    map-get(settings.$grey, 'base');
-}
-
-::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
-
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.1);
-  background-color: map-get(settings.$grey, 'lighten-2');
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 0.5rem;
-  background-color: map-get(settings.$grey, 'base');
-  box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.1);
-}
-
-// Fixed a bug that the theme color is interrupted when scrolling
-.v-application {
-  overflow-y: auto;
-}
-
-// Fix app-bar's progress-bar
-.v-app-bar .v-progress-linear {
-  position: absolute;
-  bottom: 0;
-}
-</style>
