@@ -11,55 +11,21 @@ import { nextTick } from 'vue';
 // Pinia Store
 import { useGlobal } from '@/store';
 
-// import { goTo } from 'vuetify/lib/services/goto/index.mjs';
-
 // Components
-import HomeView from '@/views/HomeView.vue';
+import { product } from './product';
 
-/** Router Rules */
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'Home',
-    component: HomeView,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/AboutView.vue'),
-  },
-];
+const routes: Array<RouteRecordRaw> = [product];
 
-/** Vue Router */
+// Vue Router
 const router: Router = createRouter({
-  /**
-   * History Mode
-   *
-   * @see {@link https://router.vuejs.org/guide/essentials/history-mode.html}
-   */
-  history: createWebHistory(import.meta.env.BASE_URL), // createWebHashHistory(import.meta.env.BASE_URL)
-  /*
-  // Unimplemented in Vuetify 3.1.6
-  scrollBehavior: (to, _from, savedPosition ) => {
-    let scrollTo: number | string = 0;
-
-    if (to.hash) {
-      scrollTo = to.hash;
-    } else if (savedPosition) {
-      scrollTo = savedPosition.top;
-    }
-
-    return goTo(scrollTo);
-  },
-  */
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+  scrollBehavior() {
+    return { top: 0, left: 0 };
+  },
 });
 
 // Global before guards
-// https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards}
 router.beforeEach(
   async (
     _to: RouteLocationNormalized,
@@ -78,7 +44,6 @@ router.beforeEach(
 );
 
 // Global After Hooks
-// https://router.vuejs.org/guide/advanced/navigation-guards.html#global-after-hooks}
 router.afterEach(() => {
   const globalStore = useGlobal();
   // Hide Loading

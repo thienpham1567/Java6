@@ -4,7 +4,6 @@
  * Configures SASS variables and Vuetify overwrites
  */
 
-// https://next.vuetifyjs.com/features/sass-variables/
 @use 'vuetify/settings' with (
   // Place SASS variable overrides here
   $body-font-family: (Roboto, 'Noto Color Emoji', sans-serif)
