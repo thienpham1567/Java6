@@ -9,6 +9,7 @@ import vuetify from '@/plugins/vuetify';
 // Load ElementPlus
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+import '@/styles/settings.scss' //global css
 
 // Load Layout vue.
 import App from '@/App.vue';

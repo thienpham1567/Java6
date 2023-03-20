@@ -7,6 +7,7 @@ import {
   type RouteRecordRaw,
 } from 'vue-router';
 import { nextTick } from 'vue';
+import Layout from '@/layout/index.vue';
 
 // Pinia Store
 import { useGlobal } from '@/store';
@@ -14,7 +15,12 @@ import { useGlobal } from '@/store';
 // Components
 import { product } from './product';
 
-const routes: Array<RouteRecordRaw> = [product];
+const home = {
+  path: '/',
+  name:'Home',
+  component: Layout,
+}
+const routes: Array<RouteRecordRaw> = [home,product];
 
 // Vue Router
 const router: Router = createRouter({
@@ -35,8 +41,6 @@ router.beforeEach(
     const globalStore = useGlobal();
     // Show Loading
     globalStore.setLoading(true);
-    // Hide snack bar
-    globalStore.setMessage('');
     await nextTick();
 
     next();

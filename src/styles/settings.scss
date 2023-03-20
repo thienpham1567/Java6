@@ -1,9 +1,6 @@
 /**
- * src/styles/settings.scss
- *
  * Configures SASS variables and Vuetify overwrites
  */
-
 @use 'vuetify/settings' with (
   // Place SASS variable overrides here
   $body-font-family: (Roboto, 'Noto Color Emoji', sans-serif)
@@ -17,3 +14,7 @@ samp,
 var {
   font-family: 'Roboto Mono', monospace !important;
 }
+
+// Import
+@import './vars';
+@import './product';
