@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable require-jsdoc */
 /* eslint-disable jsdoc/require-jsdoc */
+/* eslint-disable prettier/prettier */
 export function isEmail(email: string): boolean {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return re.test(email)

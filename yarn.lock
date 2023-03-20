@@ -94,14 +94,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@es-joy/jsdoccomment@npm:~0.36.1":
-  version: 0.36.1
-  resolution: "@es-joy/jsdoccomment@npm:0.36.1"
+"@ctrl/tinycolor@npm:^3.4.1":
+  version: 3.6.0
+  resolution: "@ctrl/tinycolor@npm:3.6.0"
+  checksum: 4d1e481b4d7f9bb23d21b5436726034d37c2a1bc751b5169ef29ead0237e96443dbccbcfa887e20c3a65ba1b5e270063bb21b4034eac97561b980cbbd5e92a16
+  languageName: node
+  linkType: hard
+
+"@element-plus/icons-vue@npm:^2.0.6":
+  version: 2.1.0
+  resolution: "@element-plus/icons-vue@npm:2.1.0"
+  peerDependencies:
+    vue: ^3.2.0
+  checksum: 5217a4f4289c424ab00e8366f8291ce528ffcabc806e1be87349c260587dee007e3f134ba9bcfb8833d3dfba9143b2c224446b6142f7201faa0c1c3de5a93ea3
+  languageName: node
+  linkType: hard
+
+"@es-joy/jsdoccomment@npm:~0.37.0":
+  version: 0.37.0
+  resolution: "@es-joy/jsdoccomment@npm:0.37.0"
   dependencies:
     comment-parser: 1.3.1
     esquery: ^1.4.0
-    jsdoc-type-pratt-parser: ~3.1.0
-  checksum: 28e697779230dc6a95b1f233a8c2a72b64fbea686e407106e5d4292083421a997452731c414de26c10bee86e8e0397c5fb84d6ecfd4b472a29735e1af103ddb6
+    jsdoc-type-pratt-parser: ~4.0.0
+  checksum: 949c0d164573f189998a7ad7ace936639535e1cacf495d7daa893142dbe9e947f146602615732eaa3174b7ca08af9eea5d9fa97a68fdfe0aa14213ab0f319b13
   languageName: node
   linkType: hard
 
@@ -437,6 +453,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/core@npm:^1.2.3":
+  version: 1.2.4
+  resolution: "@floating-ui/core@npm:1.2.4"
+  checksum: 1c163ea1804e2b0a28fda6e32efed0e242d0db8081fd24aab9d1cbb100f94a558709231c483bf74bf09a9204ea6e7845813d43b5322ceb6ee63285308f68f65b
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:^1.0.1":
+  version: 1.2.4
+  resolution: "@floating-ui/dom@npm:1.2.4"
+  dependencies:
+    "@floating-ui/core": ^1.2.3
+  checksum: 5c24a2e8f04e436390646c8a4431c6cb79e03711fbb0f818b87d613a6be8971bc560a830b702aaa51a0ebc4d0c45deb06f3140c14125dc1ac770365bf66ee903
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -587,6 +619,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@popperjs/core@npm:@sxzz/popperjs-es@^2.11.7":
+  version: 2.11.7
+  resolution: "@sxzz/popperjs-es@npm:2.11.7"
+  checksum: 109b6569b75196db798da22d8e23bdf5c395ea46633c68eebdbcc59f39cd1df67dc0cf98ae06e0edf668e62d0aff87b9858d3b305dcb49524b724c629d2ea8c1
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -658,6 +697,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash-es@npm:^4.17.6":
+  version: 4.17.7
+  resolution: "@types/lodash-es@npm:4.17.7"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 4b1f39fd1d921311c37a846c0e0df9d1fa23e27448a6ad1efd7574e703abd2b2fa5e8f3b5037146000f167ba231d0d01e52747d902654151b4ceeff9f2a9b380
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*, @types/lodash@npm:^4.14.182":
+  version: 4.14.191
+  resolution: "@types/lodash@npm:4.14.191"
+  checksum: ba0d5434e10690869f32d5ea49095250157cae502f10d57de0a723fd72229ce6c6a4979576f0f13e0aa9fbe3ce2457bfb9fa7d4ec3d6daba56730a51906d1491
+  languageName: node
+  linkType: hard
+
 "@types/minimist@npm:^1.2.0":
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
@@ -697,6 +752,13 @@ __metadata:
   version: 4.0.2
   resolution: "@types/tough-cookie@npm:4.0.2"
   checksum: e055556ffdaa39ad85ede0af192c93f93f986f4bd9e9426efdc2948e3e2632db3a4a584d4937dbf6d7620527419bc99e6182d3daf2b08685e710f2eda5291905
+  languageName: node
+  linkType: hard
+
+"@types/web-bluetooth@npm:^0.0.16":
+  version: 0.0.16
+  resolution: "@types/web-bluetooth@npm:0.0.16"
+  checksum: f68a630d062202a25c46d48686ebae1cf429dc70b4578fcf13b8357b2db63e4aedfb6f6d752bd388366be46ebd19c1c9de45f8a15c2631bb79e904fdfc454f94
   languageName: node
   linkType: hard
 
@@ -1013,19 +1075,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/eslint-config-prettier@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "@vue/eslint-config-prettier@npm:7.1.0"
-  dependencies:
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-prettier: ^4.0.0
-  peerDependencies:
-    eslint: ">= 7.28.0"
-    prettier: ">= 2.0.0"
-  checksum: d6de465bccb0b06fa6679ea566491f556c6b980d8151dfe29b7a336836b5cc12e27151879f2e3dee919a4a3e0901f1c9f572dcf64a70c6660d05fd71e52342d3
-  languageName: node
-  linkType: hard
-
 "@vue/reactivity-transform@npm:3.2.47":
   version: 3.2.47
   resolution: "@vue/reactivity-transform@npm:3.2.47"
@@ -1130,6 +1179,34 @@ __metadata:
     vue: ^3.0.0
     vuetify: ^3.0.0-beta.4
   checksum: 5777955e593afbb947c8be28a8625021846901e16ab982edfbbb74d9beb15f95490390ab1b0c6ec47e8b05389547eb69c79173cca04389f0203795071bb04994
+  languageName: node
+  linkType: hard
+
+"@vueuse/core@npm:^9.1.0":
+  version: 9.13.0
+  resolution: "@vueuse/core@npm:9.13.0"
+  dependencies:
+    "@types/web-bluetooth": ^0.0.16
+    "@vueuse/metadata": 9.13.0
+    "@vueuse/shared": 9.13.0
+    vue-demi: "*"
+  checksum: 2b19d8ec4305f6c65650813c0fa9c15af6b322fc253ad656eb1c4bc8d7617a2ddd46a46d7ea359c4cdc5a5724aa5fc152fa7a3816ed6ebeaec4f7e58defb7153
+  languageName: node
+  linkType: hard
+
+"@vueuse/metadata@npm:9.13.0":
+  version: 9.13.0
+  resolution: "@vueuse/metadata@npm:9.13.0"
+  checksum: 91e137bf2fb1406587b523edae26b58b315d3a59797c9f2ed5dde9cb707026aa740b86da5955ea7f9662a93ce92249d0b3af763c65449b4a843bbd0725eb67f6
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:9.13.0":
+  version: 9.13.0
+  resolution: "@vueuse/shared@npm:9.13.0"
+  dependencies:
+    vue-demi: "*"
+  checksum: e53e7312bdd2030b7970afcf4d3dc3f9a47f7721a92ccb51c364d23246233cb54758f7ddacbdb9ac63d1e86ec82e97d06cb53b05a4b8d43be877d16ab61dd9bb
   languageName: node
   linkType: hard
 
@@ -1414,6 +1491,13 @@ __metadata:
   version: 2.0.0
   resolution: "astral-regex@npm:2.0.0"
   checksum: 876231688c66400473ba505731df37ea436e574dd524520294cc3bbc54ea40334865e01fa0d074d74d036ee874ee7e62f486ea38bc421ee8e6a871c06f011766
+  languageName: node
+  linkType: hard
+
+"async-validator@npm:^4.2.5":
+  version: 4.2.5
+  resolution: "async-validator@npm:4.2.5"
+  checksum: 3e3d891a2e21497c8a646afeb7b1e6ed5f98de5f58ce3600732080f327cb581e65d8d8ff184273f1461dc84105d49f5cf31422a67ce50e787967c306838b6f40
   languageName: node
   linkType: hard
 
@@ -1979,6 +2063,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.3":
+  version: 1.11.7
+  resolution: "dayjs@npm:1.11.7"
+  checksum: 5003a7c1dd9ed51385beb658231c3548700b82d3548c0cfbe549d85f2d08e90e972510282b7506941452c58d32136d6362f009c77ca55381a09c704e9f177ebb
+  languageName: node
+  linkType: hard
+
 "de-indent@npm:^1.0.2":
   version: 1.0.2
   resolution: "de-indent@npm:1.0.2"
@@ -2243,6 +2334,31 @@ __metadata:
   bin:
     editorconfig: bin/editorconfig
   checksum: a94afeda19f12a4bcc4a573f0858df13dd3a2d1a3268cc0f17a6326ebe7ddd6cb0c026f8e4e73c17d34f3892bf6f8b561512d9841e70063f61da71b4c57dc5f0
+  languageName: node
+  linkType: hard
+
+"element-plus@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "element-plus@npm:2.3.1"
+  dependencies:
+    "@ctrl/tinycolor": ^3.4.1
+    "@element-plus/icons-vue": ^2.0.6
+    "@floating-ui/dom": ^1.0.1
+    "@popperjs/core": "npm:@sxzz/popperjs-es@^2.11.7"
+    "@types/lodash": ^4.14.182
+    "@types/lodash-es": ^4.17.6
+    "@vueuse/core": ^9.1.0
+    async-validator: ^4.2.5
+    dayjs: ^1.11.3
+    escape-html: ^1.0.3
+    lodash: ^4.17.21
+    lodash-es: ^4.17.21
+    lodash-unified: ^1.0.2
+    memoize-one: ^6.0.0
+    normalize-wheel-es: ^1.2.0
+  peerDependencies:
+    vue: ^3.2.0
+  checksum: f2fe2444647047303bfd54a9b860df167fa03de46928d829164559f7c95cdd5f330b550dd59d24a744afd3a68c82e299018cfaa664860eb2f9c5e19149d526db
   languageName: node
   linkType: hard
 
@@ -2649,6 +2765,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"escape-html@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "escape-html@npm:1.0.3"
+  checksum: 6213ca9ae00d0ab8bccb6d8d4e0a98e76237b2410302cf7df70aaa6591d509a2a37ce8998008cbecae8fc8ffaadf3fb0229535e6a145f3ce0b211d060decbb24
+  languageName: node
+  linkType: hard
+
 "escape-string-regexp@npm:^1.0.5":
   version: 1.0.5
   resolution: "escape-string-regexp@npm:1.0.5"
@@ -2688,17 +2811,6 @@ __metadata:
   peerDependencies:
     eslint: ">=5.16.0"
   checksum: 52ad84c0df2d33703024e5b7fd73a9a1b2a87413d25cee1826c891b3f8fba89f9188f3c5ed6d57b4315851c6a3c82847cc9f6c747278bf4395341f9ad79ed0d0
-  languageName: node
-  linkType: hard
-
-"eslint-config-prettier@npm:^8.3.0":
-  version: 8.5.0
-  resolution: "eslint-config-prettier@npm:8.5.0"
-  peerDependencies:
-    eslint: ">=7.0.0"
-  bin:
-    eslint-config-prettier: bin/cli.js
-  checksum: 0d0f5c32e7a0ad91249467ce71ca92394ccd343178277d318baf32063b79ea90216f4c81d1065d60f96366fdc60f151d4d68ae7811a58bd37228b84c2083f893
   languageName: node
   linkType: hard
 
@@ -2786,35 +2898,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^40.0.1":
-  version: 40.0.1
-  resolution: "eslint-plugin-jsdoc@npm:40.0.1"
+"eslint-plugin-jsdoc@npm:^40.1.0":
+  version: 40.1.0
+  resolution: "eslint-plugin-jsdoc@npm:40.1.0"
   dependencies:
-    "@es-joy/jsdoccomment": ~0.36.1
+    "@es-joy/jsdoccomment": ~0.37.0
     comment-parser: 1.3.1
     debug: ^4.3.4
     escape-string-regexp: ^4.0.0
-    esquery: ^1.4.0
+    esquery: ^1.5.0
     semver: ^7.3.8
     spdx-expression-parse: ^3.0.1
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
-  checksum: 19c5de2f8d0dec11c981eccce7255a8cc58e37c8d697c75144913879b16a9ea90995764bfeb00cbfc2b0678e28210cbe62a6b7865b05e756e887fffc892baf61
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-prettier@npm:^4.0.0":
-  version: 4.2.1
-  resolution: "eslint-plugin-prettier@npm:4.2.1"
-  dependencies:
-    prettier-linter-helpers: ^1.0.0
-  peerDependencies:
-    eslint: ">=7.28.0"
-    prettier: ">=2.0.0"
-  peerDependenciesMeta:
-    eslint-config-prettier:
-      optional: true
-  checksum: b9e839d2334ad8ec7a5589c5cb0f219bded260839a857d7a486997f9870e95106aa59b8756ff3f37202085ebab658de382b0267cae44c3a7f0eb0bcc03a4f6d6
+  checksum: 58e7d5b5d44af92dff844b3012e46fd52c8afea1f44ac1837ed85a6f5ff02cbd1bc4df04f84d47afce8ec69ae2aa8e137cd89b6cb39e3c389dbe978f260aa6ea
   languageName: node
   linkType: hard
 
@@ -3043,6 +3140,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esquery@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "esquery@npm:1.5.0"
+  dependencies:
+    estraverse: ^5.1.0
+  checksum: aefb0d2596c230118656cd4ec7532d447333a410a48834d80ea648b1e7b5c9bc9ed8b5e33a89cb04e487b60d622f44cf5713bf4abed7c97343edefdc84a35900
+  languageName: node
+  linkType: hard
+
 "esrecurse@npm:^4.3.0":
   version: 4.3.0
   resolution: "esrecurse@npm:4.3.0"
@@ -3108,13 +3214,6 @@ __metadata:
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
   checksum: e21a9d8d84f53493b6aa15efc9cfd53dd5b714a1f23f67fb5dc8f574af80df889b3bce25dc081887c6d25457cce704e636395333abad896ccdec03abaf1f3f9d
-  languageName: node
-  linkType: hard
-
-"fast-diff@npm:^1.1.2":
-  version: 1.2.0
-  resolution: "fast-diff@npm:1.2.0"
-  checksum: 1b5306eaa9e826564d9e5ffcd6ebd881eb5f770b3f977fcbf38f05c824e42172b53c79920e8429c54eb742ce15a0caf268b0fdd5b38f6de52234c4a8368131ae
   languageName: node
   linkType: hard
 
@@ -4000,12 +4099,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-core-module@npm:^2.1.0, is-core-module@npm:^2.5.0, is-core-module@npm:^2.9.0":
-  version: 2.9.0
-  resolution: "is-core-module@npm:2.9.0"
+"is-core-module@npm:^2.1.0, is-core-module@npm:^2.11.0":
+  version: 2.11.0
+  resolution: "is-core-module@npm:2.11.0"
   dependencies:
     has: ^1.0.3
-  checksum: b27034318b4b462f1c8f1dfb1b32baecd651d891a4e2d1922135daeff4141dfced2b82b07aef83ef54275c4a3526aa38da859223664d0868ca24182badb784ce
+  checksum: f96fd490c6b48eb4f6d10ba815c6ef13f410b0ba6f7eb8577af51697de523e5f2cd9de1c441b51d27251bf0e4aebc936545e33a5d26d5d51f28d25698d4a8bab
   languageName: node
   linkType: hard
 
@@ -4018,12 +4117,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-core-module@npm:^2.11.0":
-  version: 2.11.0
-  resolution: "is-core-module@npm:2.11.0"
+"is-core-module@npm:^2.5.0, is-core-module@npm:^2.9.0":
+  version: 2.9.0
+  resolution: "is-core-module@npm:2.9.0"
   dependencies:
     has: ^1.0.3
-  checksum: f96fd490c6b48eb4f6d10ba815c6ef13f410b0ba6f7eb8577af51697de523e5f2cd9de1c441b51d27251bf0e4aebc936545e33a5d26d5d51f28d25698d4a8bab
+  checksum: b27034318b4b462f1c8f1dfb1b32baecd651d891a4e2d1922135daeff4141dfced2b82b07aef83ef54275c4a3526aa38da859223664d0868ca24182badb784ce
   languageName: node
   linkType: hard
 
@@ -4370,10 +4469,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdoc-type-pratt-parser@npm:~3.1.0":
-  version: 3.1.0
-  resolution: "jsdoc-type-pratt-parser@npm:3.1.0"
-  checksum: 2f437b57621f1e481918165f6cf0e48256628a9e510d8b3f88a2ab667bf2128bf8b94c628b57c43e78f555ca61983e9c282814703840dc091d2623992214a061
+"jsdoc-type-pratt-parser@npm:~4.0.0":
+  version: 4.0.0
+  resolution: "jsdoc-type-pratt-parser@npm:4.0.0"
+  checksum: af0629c9517e484be778d8564440fec8de5b7610e0c9c88a3ba4554321364faf72b46689c8d8845faa12c0718437a9ed97e231977efc0f2d50e8a2dbad807eb3
   languageName: node
   linkType: hard
 
@@ -4633,6 +4732,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
+  languageName: node
+  linkType: hard
+
+"lodash-unified@npm:^1.0.2":
+  version: 1.0.3
+  resolution: "lodash-unified@npm:1.0.3"
+  peerDependencies:
+    "@types/lodash-es": "*"
+    lodash: "*"
+    lodash-es: "*"
+  checksum: 0bac8ce8940852c2b620e2b2be28de74b031b1e0b25e21c863fdfd85d35807d3ca3486ec1ca2fa5bd58a0ae619a4ead4ec60a87849ce9e446b3528fd85380c53
+  languageName: node
+  linkType: hard
+
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -4798,6 +4915,13 @@ __metadata:
   version: 2.0.30
   resolution: "mdn-data@npm:2.0.30"
   checksum: d6ac5ac7439a1607df44b22738ecf83f48e66a0874e4482d6424a61c52da5cde5750f1d1229b6f5fa1b80a492be89465390da685b11f97d62b8adcc6e88189aa
+  languageName: node
+  linkType: hard
+
+"memoize-one@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "memoize-one@npm:6.0.0"
+  checksum: f185ea69f7cceae5d1cb596266dcffccf545e8e7b4106ec6aa93b71ab9d16460dd118ac8b12982c55f6d6322fcc1485de139df07eacffaae94888b9b3ad7675f
   languageName: node
   linkType: hard
 
@@ -5197,6 +5321,13 @@ __metadata:
   version: 3.0.0
   resolution: "normalize-path@npm:3.0.0"
   checksum: 88eeb4da891e10b1318c4b2476b6e2ecbeb5ff97d946815ffea7794c31a89017c70d7f34b3c2ebf23ef4e9fc9fb99f7dffe36da22011b5b5c6ffa34f4873ec20
+  languageName: node
+  linkType: hard
+
+"normalize-wheel-es@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "normalize-wheel-es@npm:1.2.0"
+  checksum: 59595255ea5a74b1cf69c83e986da995434a82012cbe1d1fcc53fc01ff9c2b347a6733eee9bafe5f713a14c2a19e5d04485ccb591a5106bb3dcc199bf7ab4aef
   languageName: node
   linkType: hard
 
@@ -5802,24 +5933,6 @@ __metadata:
   version: 1.1.2
   resolution: "prelude-ls@npm:1.1.2"
   checksum: c4867c87488e4a0c233e158e4d0d5565b609b105d75e4c05dc760840475f06b731332eb93cc8c9cecb840aa8ec323ca3c9a56ad7820ad2e63f0261dadcb154e4
-  languageName: node
-  linkType: hard
-
-"prettier-linter-helpers@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "prettier-linter-helpers@npm:1.0.0"
-  dependencies:
-    fast-diff: ^1.1.2
-  checksum: 00ce8011cf6430158d27f9c92cfea0a7699405633f7f1d4a45f07e21bf78e99895911cbcdc3853db3a824201a7c745bd49bfea8abd5fb9883e765a90f74f8392
-  languageName: node
-  linkType: hard
-
-"prettier@npm:^2.8.4":
-  version: 2.8.4
-  resolution: "prettier@npm:2.8.4"
-  bin:
-    prettier: bin-prettier.js
-  checksum: c173064bf3df57b6d93d19aa98753b9b9dd7657212e33b41ada8e2e9f9884066bb9ca0b4005b89b3ab137efffdf8fbe0b462785aba20364798ff4303aadda57e
   languageName: node
   linkType: hard
 
@@ -7401,18 +7514,18 @@ __metadata:
     "@typescript-eslint/parser": ^5.54.1
     "@vitejs/plugin-vue": ^4.0.0
     "@vitest/coverage-c8": ^0.29.2
-    "@vue/eslint-config-prettier": ^7.1.0
     "@vue/test-utils": ^2.3.0
     "@vue/tsconfig": ^0.1.3
     axios: ^1.3.4
     core-js: ^3.29.0
+    element-plus: ^2.3.1
     eslint: ^8.35.0
     eslint-config-google: ^0.14.0
     eslint-import-resolver-alias: ^1.1.2
     eslint-import-resolver-typescript: ^3.5.3
     eslint-plugin-html: ^7.1.0
     eslint-plugin-import: ^2.27.5
-    eslint-plugin-jsdoc: ^40.0.1
+    eslint-plugin-jsdoc: ^40.1.0
     eslint-plugin-tsdoc: ^0.2.17
     eslint-plugin-vue: ^9.9.0
     eslint-plugin-vuejs-accessibility: ^2.1.0
@@ -7431,7 +7544,6 @@ __metadata:
     postcss: ^8.4.21
     postcss-html: ^1.5.0
     postcss-scss: ^4.0.6
-    prettier: ^2.8.4
     rimraf: ^4.3.1
     rollup-plugin-visualizer: ^5.9.0
     sass: ^1.58.3

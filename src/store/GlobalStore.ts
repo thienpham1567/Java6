@@ -9,11 +9,8 @@ const useGlobalStore = defineStore('global', () => {
   const loading: Ref<boolean> = ref(true);
   /** ProgressBar Percentage */
   const progress: Ref<number | null> = ref(null);
-  /** SnackBar Text */
-  const message: Ref<string> = ref('');
 
   // Actions
-
   /** Show loading Overlay */
   function setLoading(display: boolean) {
     loading.value = display;
@@ -31,13 +28,7 @@ const useGlobalStore = defineStore('global', () => {
     loading.value = true;
   }
 
-  /** Show snackbar message */
-  function setMessage(msg: string = '') {
-    // put snackbar text
-    message.value = msg;
-  }
-
-  return { loading, progress, message, setLoading, setProgress, setMessage };
+  return { loading, progress, setLoading, setProgress };
 });
 
 export default useGlobalStore;
