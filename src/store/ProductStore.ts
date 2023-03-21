@@ -1,21 +1,30 @@
 import type { ProductType, QueryProductParams } from '@/types/product';
-import { ref, type Ref } from 'vue';
 import { defineStore } from 'pinia';
 import Product from '@/models/Product';
 
-const useProductStore = defineStore('product', () => {
-  // State
-  const productList : Ref<ProductType[]> = ref([]);
+interface ProductState {
+  productList: ProductType[]
+}
 
-  //  Getters
+export default defineStore('product', {
+  state: (): ProductState => ({
+    productList: []
+  }),
 
-  // Actions
-  async function getList(params?: QueryProductParams){
-    const { data } = await new Product().list(params);
-    productList.value = data
-  }
+  getters: {
 
-  return {productList, getList};
+  },
+
+  actions: {
+    async getList(params?: QueryProductParams){
+      const { data } = await new Product().list(params);
+      this.productList = data
+    }
+  },
+
+  // Data persistence destination
+  persist: {
+    key: 'product',
+    storage: window.sessionStorage,
+  },
 });
-
-export default useProductStore;

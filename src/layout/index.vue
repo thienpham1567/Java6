@@ -10,11 +10,11 @@ import {
 import { useGlobal } from "@/store";
 
 // Components
-
 const globalStore = useGlobal();
 
-/** drawer visibility */
-const drawer: Ref<boolean> = ref(false);
+
+const service: Ref<string> = ref("");
+const services: Ref<{ [key:string]: string; }[]> = ref([{title:"Contact Info"},{title:"FAQ"},{title:"Give Us Feedback"}]);
 
 /** loading overlay visibility */
 const loading: WritableComputedRef<boolean> = computed({
@@ -29,5 +29,24 @@ const progress: ComputedRef<number | null> = computed(
 </script>
 
 <template>
-  <v-app> </v-app>
+  <v-app>
+    <div class="top-menu">
+      <v-select
+        v-model="service"
+        :items="services"
+        label="CustomerService"
+      ></v-select>
+      <v-menu :service="service">
+        <template>
+          Customer Service
+        </template>
+
+        <v-list>
+          <v-list-item v-for="(service, index) in services" :key="index">
+            <v-list-item-title>{{ service.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
+  </v-app>
 </template>
