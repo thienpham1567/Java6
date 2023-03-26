@@ -1,0 +1,70 @@
+// ZSheader
+.top-header {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0277BD;
+  color: #fff;
+
+  .text-menu {
+    cursor: pointer;
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+  .logo{
+    width: 13%;
+    height: 60px;
+  }
+
+  .search-cart {
+    margin-left: 10px;
+    width: 87%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .v-input__details{
+      display: none;
+    }
+    .cart-btn{
+      width: 50%;
+    }
+  }
+}
+
+.nav-menu {
+  padding: 5px 0;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .menu{
+    display: flex;
+    align-items: center;
+    gap:40px;
+
+    .menu-item{
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      span{
+        color: #c7c7c7;
+      }
+    }
+  }
+  p{
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 19px;
+    color: #0277BD;
+  }
+}
+
+// ZSFooter

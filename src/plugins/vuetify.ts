@@ -44,16 +44,16 @@ export default createVuetify({
   },
   // Internationalization (i18n)
   // https://next.vuetifyjs.com/en/features/internationalization/#internationalization-i18n
-  locale: {
-    locale: 'en',
-    fallback: 'en',
-    messages: { en },
-  },
+  // locale: {
+  //   locale: 'en',
+  //   fallback: 'en',
+  //   messages: { en },
+  // },
   // Theme
   // https://next.vuetifyjs.com/en/features/theme/
-  theme: {
-    defaultTheme: 'light',
-  },
+  // theme: {
+  //   defaultTheme: 'light',
+  // },
 });
 
 // Export for test.

@@ -5,9 +5,13 @@ export const product = {
   component: Layout,
   children: [
     {
-      path: '/',
+      path: '',
       name: 'Product',
       component: () => import('@/views/Product/ProductList.vue'),
+    },
+    {
+      path: ':id(\\d+)',
+      component: () => import('@/components/Product/Product.vue'),
     },
   ],
 }

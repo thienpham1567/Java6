@@ -32,7 +32,6 @@
     "build:clean": "rimraf dist",
     "preview": "vite preview",
     "lint": "eslint . --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint && prettier . -w -u",
-    "lint:style": "stylelint \"./**/*.{css,sass,scss,htm,html,vue}\" --fix --cache-location ./node_modules/.vite/vite-plugin-stylelint  && prettier  \"./**/*.{css,sass,scss,htm,html,vue}\" -w -u",
     "test:unit": "vitest",
     "test:coverage": "vitest run --coverage",
     "build-only": "vite build",
@@ -44,7 +43,6 @@
     "@types/axios": "^0.14.0",
     "axios": "^1.3.4",
     "core-js": "^3.29.0",
-    "element-plus": "^2.3.1",
     "eslint-plugin-jsdoc": "^40.1.0",
     "eslint-plugin-tsdoc": "^0.2.17",
     "js-base64": "^3.7.5",
@@ -89,10 +87,6 @@
     "rimraf": "^4.3.1",
     "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.58.3",
-    "stylelint": "^15.2.0",
-    "stylelint-config-recommended-scss": "^9.0.1",
-    "stylelint-config-recommended-vue": "^1.4.0",
-    "stylelint-order": "^6.0.3",
     "typescript": "^4.9.5",
     "vee-validate": "^4.7.4",
     "vite": "^4.1.4",
@@ -109,7 +103,6 @@
   },
   "lint-staged": {
     "*.{js,ts,json,yaml,yml,yaml,vue,htm,html,md}": "eslint --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint",
-    "*.{css,sass,scss,vue,htm,html}": "stylelint --fix --cache --cache-location ./node_modules/.vite/vite-plugin-stylelint",
     "*": "prettier -w -u"
   },
   "resolutions": {

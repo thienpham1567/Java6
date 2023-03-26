@@ -3,7 +3,7 @@
  */
 @use 'vuetify/settings' with (
   // Place SASS variable overrides here
-  $body-font-family: (Roboto, 'Noto Color Emoji', sans-serif)
+  $body-font-family: (Roboto, 'Noto Color Emoji', sans-serif),
 );
 
 // Fix for monospace Font.
@@ -14,8 +14,3 @@ samp,
 var {
   font-family: 'Roboto Mono', monospace !important;
 }
-
-// Import
-@import './home';
-@import './vars';
-@import './product';

@@ -1,34 +1,23 @@
-import { ref, type Ref } from 'vue';
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-/** Global Store */
-const useGlobalStore = defineStore('global', () => {
-  // State
+interface GlobalState {
+  loading: boolean;
+}
 
-  /** Loading overlay */
-  const loading: Ref<boolean> = ref(true);
-  /** ProgressBar Percentage */
-  const progress: Ref<number | null> = ref(null);
+export default defineStore("global", {
+  state: (): GlobalState => ({
+    loading: true,
+  }),
 
-  // Actions
-  /** Show loading Overlay */
-  function setLoading(display: boolean) {
-    loading.value = display;
-    if (!display) {
-      // Reset Progress value
-      progress.value = null;
-    }
-  }
+  getters: {
+    getLoading(): boolean {
+      return this.loading;
+    },
+  },
 
-  /** Update progress value */
-  function setProgress(v: number | null = null) {
-    // update progress value
-    progress.value = v;
-    // display loading overlay
-    loading.value = true;
-  }
-
-  return { loading, progress, setLoading, setProgress };
+  actions: {
+    setLoading(display: boolean): void {
+      this.loading = display;
+    },
+  },
 });
-
-export default useGlobalStore;

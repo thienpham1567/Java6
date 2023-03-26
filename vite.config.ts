@@ -30,16 +30,16 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         autoImport: true,
         styles: { configFile: 'src/styles/settings.scss' },
       }),
-      // vite-plugin-checker
-      // https://github.com/fi3ework/vite-plugin-checker
-      checker({
-        typescript: true,
-        vueTsc: true,
-        eslint: {
-          lintCommand:
-            'eslint . --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint', // for example, lint .ts & .tsx
-        },
-      }),
+      // // vite-plugin-checker
+      // // https://github.com/fi3ework/vite-plugin-checker
+      // checker({
+      //   typescript: true,
+      //   vueTsc: true,
+      //   eslint: {
+      //     lintCommand:
+      //       'eslint . --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint', // for example, lint .ts & .tsx
+      //   },
+      // }),
     ],
     // https://vitejs.dev/config/server-options.html
     server: {

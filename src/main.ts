@@ -6,11 +6,9 @@ import store from '@/store';
 // Load Vuetify
 import vuetify from '@/plugins/vuetify';
 
-// Load ElementPlus
-import ElementPlus from 'element-plus';
-import 'element-plus/dist/index.css';
-import '@/styles/settings.scss' //global css
-
+// Global css
+import '@/styles/settings.scss';
+import '@/styles/global.scss';
 // Load Layout vue.
 import App from '@/App.vue';
 
@@ -19,7 +17,6 @@ const vue = createApp(App);
 vue.use(router);
 vue.use(store);
 vue.use(vuetify);
-vue.use(ElementPlus);
 
 // Run!
 router.isReady().then(() => {

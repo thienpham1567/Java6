@@ -1,16 +1,21 @@
 export interface ProductType {
   id?:number,
   name?:string,
-  image_link?:string,
-  in_stock?:number,
+  imageLink?:string,
+  inStock?:number,
   created?:Date,
-  is_available?:boolean,
-  brand_id?:number,
-  category_id?:number,
+  isAvailable?:boolean,
+  brandId?:number,
+  categoryId?:number,
 }
 
 export interface CreationParams {
-
+  name:string,
+  image_link:string,
+  in_stock:number,
+  is_available:boolean,
+  brand_id:number,
+  category_id:number,
 }
 
 export type UpdateParams = Omit<ProductType, 'id'>;
@@ -21,7 +26,7 @@ export interface CreationResponse {
   message?: string
 }
 
-export interface AdminResponse {
+export interface ProductResponse {
   status: boolean
   data?: ProductType
   message?: string

@@ -7,19 +7,14 @@ import {
   type RouteRecordRaw,
 } from 'vue-router';
 import { nextTick } from 'vue';
-import Layout from '@/layout/index.vue';
 
 // Pinia Store
-import { useGlobal } from '@/store';
+import { useGlobalStore } from '@/store';
 
-// Components
+// Routes
 import { product } from './product';
+import { home } from './home';
 
-const home = {
-  path: '/',
-  name:'Home',
-  component: Layout,
-}
 const routes: Array<RouteRecordRaw> = [home,product];
 
 // Vue Router
@@ -38,7 +33,7 @@ router.beforeEach(
     _from: RouteLocationNormalized,
     next: NavigationGuardNext
   ) => {
-    const globalStore = useGlobal();
+    const globalStore = useGlobalStore();
     // Show Loading
     globalStore.setLoading(true);
     await nextTick();
@@ -49,7 +44,7 @@ router.beforeEach(
 
 // Global After Hooks
 router.afterEach(() => {
-  const globalStore = useGlobal();
+  const globalStore = useGlobalStore();
   // Hide Loading
   globalStore.setLoading(false);
 });
