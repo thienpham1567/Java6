@@ -18,7 +18,7 @@ onMounted(getList);
       indeterminate
     ></v-progress-circular>
   </div>
-  <div v-else>
+  <div v-else class="list-container">
     <v-container>
       <v-row>
         <v-col
@@ -29,12 +29,12 @@ onMounted(getList);
           md="4"
           lg="3"
         >
-          <router-link :to="{ name: 'Product', params: { id: product.id } }">
-            <v-card max-width="400" class="">
+          <router-link :to="{ name: 'Product', params: { id: product.id } }" class="text-decoration-none">
+            <v-card max-width="400">
               <v-img height="400" :src="product.imageLink" cover></v-img>
               <v-card-title>{{ product.name }}</v-card-title>
               <v-card-subtitle class="pt-4">
-                {{ product.inStock }}
+                ${{ product.price?.toFixed(2) }}
               </v-card-subtitle>
               <v-card-actions>
                 <v-btn color="light-blue-darken-3">Quick order</v-btn>

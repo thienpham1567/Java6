@@ -3,7 +3,7 @@ export interface ProductType {
   name?:string,
   imageLink?:string,
   inStock?:number,
-  created?:Date,
+  price?:number
   isAvailable?:boolean,
   brandId?:number,
   categoryId?:number,
