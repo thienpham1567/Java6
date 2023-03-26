@@ -20,12 +20,10 @@ export default defineStore("product", {
 
   actions: {
     async getList() {
-      const { setLoading } = useGlobalStore();
+      const { getLoading, setLoading } = useGlobalStore();
       setLoading(false);
       const { data } = await new Product().list();
       this.productList = data;
-      console.log(this.products);
-
       setLoading(true);
     },
   },

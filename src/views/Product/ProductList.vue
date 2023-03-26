@@ -11,26 +11,14 @@ onMounted(getList);
 
 <template>
   <div v-if="getLoading" class="loading">
-    <v-progress-circular
-      :size="60"
-      :width="6"
-      color="light-blue-darken-3"
-      indeterminate
-    ></v-progress-circular>
+    <v-progress-circular :size="60" :width="6" color="light-blue-darken-3" indeterminate></v-progress-circular>
   </div>
-  <div v-else class="list-container">
+  <div v-else class="padding-y-page">
     <v-container>
       <v-row>
-        <v-col
-          v-for="product in products"
-          :key="product.id"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <router-link :to="{ name: 'Product', params: { id: product.id } }" class="text-decoration-none">
-            <v-card max-width="400">
+        <v-col v-for="product in products" :key="product.productId" cols="12" sm="6" lg="4">
+          <router-link :to="{ name: 'Product', params: { productId: product.productId } }" class="text-decoration-none">
+            <v-card max-width="500">
               <v-img height="400" :src="product.imageLink" cover></v-img>
               <v-card-title>{{ product.name }}</v-card-title>
               <v-card-subtitle class="pt-4">
