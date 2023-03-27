@@ -1,0 +1,25 @@
+.dialog-login-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    cursor: pointer;
+    color: #0277bd;
+    font-size: 30px;
+  }
+}
+
+.account-btns {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: uppercase;
+  gap: 12px;
+
+  p {
+    text-transform: none;
+    color: gray;
+  }
+}

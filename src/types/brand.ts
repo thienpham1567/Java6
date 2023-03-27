@@ -1,27 +1,28 @@
 export interface BrandType {
-
+  brandId?: number;
+  name: string;
 }
 
-export interface CreationParam {
-
+export interface CreationParams{
+  name: string;
 }
 
-export type UpdateParam = Omit<BrandType, 'id'>;
+export type UpdateParams = Omit<BrandType, "id">;
 
 export interface CreationResponse {
-  status: boolean
-  data: { id: number }
-  message?: string
+  status: boolean;
+  data: { id: number };
+  message?: string;
 }
 
-export interface AdminResponse {
-  status: boolean
-  data?: BrandType
-  message?: string
+export interface BrandResponse {
+  status: boolean;
+  data?: BrandType;
+  message?: string;
 }
 
 export interface ListResponse {
-  status: boolean
-  data: BrandType[]
-  message?: string
+  status: boolean;
+  data: BrandType[];
+  message?: string;
 }

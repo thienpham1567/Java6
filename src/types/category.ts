@@ -1,27 +1,30 @@
 export interface CategoryType {
-
+  categoryId?: number;
+  code?: string;
+  description?: string;
 }
 
-export interface CreationParam {
-
+export interface CreationParams {
+  code: string;
+  description: string;
 }
 
-export type UpdateParam = Omit<CategoryType, 'id'>;
+export type UpdateParams = Omit<CategoryType, "id">;
 
 export interface CreationResponse {
-  status: boolean
-  data: { id: number }
-  message?: string
+  status: boolean;
+  data: { id: number };
+  message?: string;
 }
 
-export interface AdminResponse {
-  status: boolean
-  data?: CategoryType
-  message?: string
+export interface CategoryResponse {
+  status: boolean;
+  data?: CategoryType;
+  message?: string;
 }
 
 export interface ListResponse {
-  status: boolean
-  data: CategoryType[]
-  message?: string
+  status: boolean;
+  data: CategoryType[];
+  message?: string;
 }

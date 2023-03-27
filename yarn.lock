@@ -778,6 +778,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vee-validate/i18n@npm:^4.8.3":
+  version: 4.8.3
+  resolution: "@vee-validate/i18n@npm:4.8.3"
+  checksum: 93ab9a5571d5c9bebdd908dbc34a6265750e10fdeb26bcd56b2b8a705563a110931a879ea523d9430030863e0a5fce7704d8e6c9ab9e490c77a7597e08010db9
+  languageName: node
+  linkType: hard
+
+"@vee-validate/rules@npm:^4.8.4":
+  version: 4.8.4
+  resolution: "@vee-validate/rules@npm:4.8.4"
+  dependencies:
+    vee-validate: ^4.8.4
+  checksum: 07ee4d551f5e9f045b7552ebe37dd4d0f6b5f6e149d123e8bb816ea4ba3b4204fecffd726ba8d3a95e5b2717de72c09f94900f9266c6f958ac8df57d8fbdbdd1
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-vue@npm:^4.0.0":
   version: 4.0.0
   resolution: "@vitejs/plugin-vue@npm:4.0.0"
@@ -6608,6 +6624,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vee-validate@npm:^4.8.4":
+  version: 4.8.4
+  resolution: "vee-validate@npm:4.8.4"
+  dependencies:
+    "@vue/devtools-api": ^6.5.0
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: 834ece98c63f5ed9d7e5c772cf5a64ae238a763f6c17144973958f0ab348215c639af853d92b172e9b0a6b3bfaaf412276847d4884fd211a30cc0294b442f3bf
+  languageName: node
+  linkType: hard
+
 "vite-node@npm:0.29.2":
   version: 0.29.2
   resolution: "vite-node@npm:0.29.2"
@@ -6700,6 +6727,8 @@ __metadata:
     "@types/webfontloader": ^1.6.35
     "@typescript-eslint/eslint-plugin": ^5.54.1
     "@typescript-eslint/parser": ^5.54.1
+    "@vee-validate/i18n": ^4.8.3
+    "@vee-validate/rules": ^4.8.4
     "@vitejs/plugin-vue": ^4.0.0
     "@vitest/coverage-c8": ^0.29.2
     "@vue/eslint-config-prettier": ^7.1.0

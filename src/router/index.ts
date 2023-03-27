@@ -5,17 +5,19 @@ import {
   type NavigationGuardNext,
   type RouteLocationNormalized,
   type RouteRecordRaw,
-} from 'vue-router';
-import { nextTick } from 'vue';
+} from "vue-router";
+import { nextTick } from "vue";
 
 // Pinia Store
-import { useGlobalStore } from '@/store';
+import { useGlobalStore } from "@/store";
 
 // Routes
-import { product } from './product';
-import { home } from './home';
+import { product } from "./product";
+import { home } from "./home";
+import { cart } from "./cart";
+import { account } from "./account";
 
-const routes: Array<RouteRecordRaw> = [home,product];
+const routes: Array<RouteRecordRaw> = [home, product, cart, account];
 
 // Vue Router
 const router: Router = createRouter({

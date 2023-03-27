@@ -11,26 +11,38 @@ onMounted(getList);
 
 <template>
   <div v-if="getLoading" class="loading">
-    <v-progress-circular :size="60" :width="6" color="light-blue-darken-3" indeterminate></v-progress-circular>
+    <v-progress-circular
+      :size="60"
+      :width="6"
+      color="light-blue-darken-3"
+      indeterminate
+    ></v-progress-circular>
   </div>
-  <div v-else class="padding-y-page">
-    <v-container>
-      <v-row>
-        <v-col v-for="product in products" :key="product.productId" cols="12" sm="6" lg="4">
-          <router-link :to="{ name: 'Product', params: { productId: product.productId } }" class="text-decoration-none">
-            <v-card max-width="500">
-              <v-img height="400" :src="product.imageLink" cover></v-img>
-              <v-card-title>{{ product.name }}</v-card-title>
-              <v-card-subtitle class="pt-4">
-                ${{ product.price?.toFixed(2) }}
-              </v-card-subtitle>
-              <v-card-actions>
-                <v-btn color="light-blue-darken-3">Quick order</v-btn>
-              </v-card-actions>
-            </v-card>
-          </router-link>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+  <v-container v-else class="padding-y-page">
+    <v-row>
+      <v-col
+        v-for="product in products"
+        :key="product.productId"
+        cols="12"
+        sm="6"
+        lg="4"
+      >
+        <router-link
+          :to="{ name: 'Product', params: { productId: product.productId } }"
+          class="text-decoration-none"
+        >
+          <v-card max-width="500">
+            <v-img height="400" :src="product.imageLink" cover></v-img>
+            <v-card-title>{{ product.name }}</v-card-title>
+            <v-card-subtitle class="pt-4">
+              ${{ product.price?.toFixed(2) }}
+            </v-card-subtitle>
+            <v-card-actions>
+              <v-btn color="light-blue-darken-3">Quick order</v-btn>
+            </v-card-actions>
+          </v-card>
+        </router-link>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>

@@ -1,13 +1,38 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { ref, type Ref } from "vue";
+import { useRouter } from "vue-router";
+import Brand from "@/models/Brand";
+import Category from "@/models/Category";
+import type { BrandType } from "@/types/brand";
+import type { CategoryType } from "@/types/category";
+import LoginRegister from "@/components/Dialog/LoginRegister.vue"
 
+const router = useRouter();
 const services: Ref<{ [key: string]: string }[]> = ref([
   { title: "Contact Info" },
   { title: "FAQ" },
   { title: "Give Us Feedback" },
 ]);
 const subCategories: Ref<string[]> = ref(["Shop all shoes"]);
-const brands: Ref<string[]> = ref(["Nike", "Puma", "Adidas"]);
+const categories: Ref<CategoryType[]> = ref([]);
+const brands: Ref<BrandType[]> = ref([]);
+const loginRegisterDialog: Ref<boolean> = ref(false);
+
+const closeDialog = () => {
+  loginRegisterDialog.value = !loginRegisterDialog.value;
+}
+
+const goToCart = () => {
+  router.push("/cart");
+}
+
+const fetchData = async () => {
+  categories.value = (await new Category().list()).data;
+  brands.value = (await new Brand().list()).data;
+};
+
+onMounted(fetchData);
 </script>
 
 <template>
@@ -50,6 +75,8 @@ const brands: Ref<string[]> = ref(["Nike", "Puma", "Adidas"]);
           color="light-blue-darken-3"
           prepend-icon="mdi-cart-outline"
           size="large"
+          variant="tonal"
+          @click="goToCart"
         >
           My Cart
         </v-btn>
@@ -58,36 +85,11 @@ const brands: Ref<string[]> = ref(["Nike", "Puma", "Adidas"]);
   </header>
   <nav class="nav-menu padding-x-page">
     <div class="menu">
-      <v-menu>
+
+      <v-menu v-for="category in categories" :key="category.categoryId">
         <template v-slot:activator="{ props }">
           <div v-bind="props" class="menu-item">
-            <p>Women</p>
-            <span class="mdi mdi-arrow-down-thin"></span>
-          </div>
-        </template>
-        <v-list>
-          <v-list-item v-for="item in subCategories" :key="item" :value="item">
-            <v-list-item-title>{{ item }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-menu>
-        <template v-slot:activator="{ props }">
-          <div v-bind="props" class="menu-item">
-            <p>Men</p>
-            <span class="mdi mdi-arrow-down-thin"></span>
-          </div>
-        </template>
-        <v-list>
-          <v-list-item v-for="item in subCategories" :key="item" :value="item">
-            <v-list-item-title>{{ item }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-menu>
-        <template v-slot:activator="{ props }">
-          <div v-bind="props" class="menu-item">
-            <p>Kids</p>
+            <p>{{ category.code }}</p>
             <span class="mdi mdi-arrow-down-thin"></span>
           </div>
         </template>
@@ -105,12 +107,20 @@ const brands: Ref<string[]> = ref(["Nike", "Puma", "Adidas"]);
           </div>
         </template>
         <v-list>
-          <v-list-item v-for="item in brands" :key="item" :value="item">
-            <v-list-item-title>{{ item }}</v-list-item-title>
+          <v-list-item v-for="brand in brands" :key="brand.brandId" :value="brand">
+            <v-list-item-title>{{ brand.name }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
     </div>
-    <p>Sign In / Register</p>
+    <v-dialog
+      v-model="loginRegisterDialog"
+      width="auto"
+    >
+      <template v-slot:activator="{ props }">
+        <p v-bind="props">Sign In / Register</p>
+      </template>
+      <LoginRegister @close-dialog="closeDialog"/>
+    </v-dialog>
   </nav>
 </template>

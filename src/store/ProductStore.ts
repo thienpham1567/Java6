@@ -1,5 +1,5 @@
 import { useGlobalStore } from "@/store";
-import type { ProductType, QueryProductParams } from "@/types/product";
+import type { ProductType } from "@/types/product";
 import { defineStore } from "pinia";
 import Product from "@/models/Product";
 
