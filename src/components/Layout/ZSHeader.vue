@@ -63,8 +63,10 @@ onMounted(fetchData);
     </p>
   </div>
   <header class="header padding-x-page">
-    <img class="logo" src="../../assets/img/zapsoonlogo.png" alt="Zapsoon" />
-    <div class="search-cart">
+    <div class="logo">
+      <img src="../../assets/img/zapsoonlogo.png" alt="Zapsoon" />
+    </div>
+    <div class="search">
       <v-text-field label="Search">
         <template v-slot:prepend-inner-icon>
           <span class="mdi mdi-magnify"></span>
