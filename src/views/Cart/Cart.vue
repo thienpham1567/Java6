@@ -1,8 +1,14 @@
 <script setup lang="ts">
+import { ref, type Ref } from "vue";
 import { onMounted } from "vue";
 import { useGlobalStore } from "@/store";
 
 const { getLoading } = useGlobalStore();
+const quantity: Ref<Number> = ref(1);
+
+const logQuantity = () => {
+  console.log(quantity.value);
+};
 </script>
 
 <template>
@@ -22,8 +28,33 @@ const { getLoading } = useGlobalStore();
             <p>Item</p>
             <p>Price / Quantity</p>
           </v-card-title>
-          <div class="items"></div>
-          <v-card-actions></v-card-actions>
+          <div class="items">
+            <div class="item">
+              <div class="content-item">
+                <img
+                  src="https://m.media-amazon.com/images/I/71xmGzaTFJL._SR255,340_.jpg"
+                  alt="item"
+                />
+                <p>Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="action-item">
+                <p>$200</p>
+                <v-select
+                  v-model="quantity"
+                  label="Select"
+                  :items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                  variant="solo"
+                  @update:model-value="logQuantity"
+                ></v-select>
+                <v-btn
+                  prepend-icon="mdi-trash-can-outline"
+                  color="light-blue-darken-3"
+                >
+                  Remove
+                </v-btn>
+              </div>
+            </div>
+          </div>
         </v-card>
       </v-col>
       <v-col cols="12" md="4" class="ps-0">

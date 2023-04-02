@@ -4,6 +4,7 @@ import type {
   CreationResponse,
   ListResponse,
   ProductResponse,
+  QueryProductParams,
   UpdateParams,
 } from "@/types/product";
 
@@ -12,8 +13,8 @@ class Product extends HTTPBaseService {
     super();
   }
 
-  async list(): Promise<ListResponse> {
-    return await this.instance.get("/products");
+  async list(params: QueryProductParams): Promise<ListResponse> {
+    return await this.instance.get("/products", { params });
   }
 
   async detail(id: number): Promise<ProductResponse> {

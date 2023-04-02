@@ -5,6 +5,28 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@auth0/auth0-spa-js@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@auth0/auth0-spa-js@npm:2.0.4"
+  checksum: 1ff91b47cca70bfc911a0bd97ee5a4d9e055784cde7961266ca68d3c4d1721b11aba1d33fee5a1919d1808f21949682041e6cd293bb014e2f1f1edfe454e8f0c
+  languageName: node
+  linkType: hard
+
+"@auth0/auth0-vue@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@auth0/auth0-vue@npm:2.1.0"
+  dependencies:
+    "@auth0/auth0-spa-js": ^2.0.4
+    vue: ^3.2.41
+  peerDependencies:
+    vue-router: ^4.0.12
+  peerDependenciesMeta:
+    vue-router:
+      optional: true
+  checksum: f6a83796598780c81bf87332cc3888abf24eca2b613d715f0cd2de974b19ae111a376462d3872741f8a01170136a87f546be0318f4d7a0a35d0cdab43505fda4
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.12.13":
   version: 7.18.6
   resolution: "@babel/code-frame@npm:7.18.6"
@@ -647,6 +669,13 @@ __metadata:
   version: 4.0.2
   resolution: "@types/tough-cookie@npm:4.0.2"
   checksum: e055556ffdaa39ad85ede0af192c93f93f986f4bd9e9426efdc2948e3e2632db3a4a584d4937dbf6d7620527419bc99e6182d3daf2b08685e710f2eda5291905
+  languageName: node
+  linkType: hard
+
+"@types/uuid@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@types/uuid@npm:9.0.1"
+  checksum: c472b8a77cbeded4bc529220b8611afa39bd64677f507838f8083d8aac8033b1f88cb9ddaa2f8589e0dcd2317291d0f6e1379f82d5ceebd6f74f3b4825288e00
   languageName: node
   linkType: hard
 
@@ -6592,6 +6621,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
+  languageName: node
+  linkType: hard
+
 "v8-to-istanbul@npm:^9.0.0":
   version: 9.0.1
   resolution: "v8-to-istanbul@npm:9.0.1"
@@ -6720,10 +6758,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "vite-vuetify-ts-starter@workspace:."
   dependencies:
+    "@auth0/auth0-spa-js": ^2.0.4
+    "@auth0/auth0-vue": ^2.1.0
     "@mdi/font": ^7.1.96
     "@types/axios": ^0.14.0
     "@types/jsdom": ^21.1.0
     "@types/node": ^18.14.6
+    "@types/uuid": ^9.0.1
     "@types/webfontloader": ^1.6.35
     "@typescript-eslint/eslint-plugin": ^5.54.1
     "@typescript-eslint/parser": ^5.54.1
@@ -6765,6 +6806,7 @@ __metadata:
     rollup-plugin-visualizer: ^5.9.0
     sass: ^1.58.3
     typescript: ^4.9.5
+    uuid: ^9.0.0
     vee-validate: ^4.7.4
     vite: ^4.1.4
     vite-plugin-checker: 0.5.6
@@ -7051,7 +7093,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:^3.2.47":
+"vue@npm:^3.2.41, vue@npm:^3.2.47":
   version: 3.2.47
   resolution: "vue@npm:3.2.47"
   dependencies:

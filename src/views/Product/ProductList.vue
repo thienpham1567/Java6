@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
 import { useProductStore } from "@/store";
 import { useGlobalStore } from "@/store";
 
+const route = useRoute();
 const { getLoading } = useGlobalStore();
-const { products, getList } = useProductStore();
+const { getProducts, fetchProducts } = useProductStore();
 
-onMounted(getList);
+watch(
+  () => route.query,
+  async toParams => {
+    await fetchProducts(toParams.brand, toParams.category);
+  }
+);
+
+onMounted(async () => {
+  await fetchProducts(route.query.brand, route.query.category);
+});
 </script>
 
 <template>
@@ -21,7 +32,7 @@ onMounted(getList);
   <v-container v-else class="padding-y-page">
     <v-row>
       <v-col
-        v-for="product in products"
+        v-for="product in getProducts"
         :key="product.productId"
         cols="12"
         sm="6"

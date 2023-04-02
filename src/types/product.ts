@@ -39,6 +39,6 @@ export interface ListResponse {
 }
 
 export interface QueryProductParams {
-  brand_id?: number;
-  category_id?: number;
+  brand?: number;
+  category?: number;
 }

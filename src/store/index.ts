@@ -10,5 +10,6 @@ export default pinia;
 // Pinia Stores
 import useGlobalStore from './GlobalStore';
 import useProductStore from './ProductStore';
+import useCartStore from './CartStore'
 
-export { useGlobalStore, useProductStore };
+export { useGlobalStore, useProductStore, useCartStore };

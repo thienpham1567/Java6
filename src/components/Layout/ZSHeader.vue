@@ -6,7 +6,7 @@ import Brand from "@/models/Brand";
 import Category from "@/models/Category";
 import type { BrandType } from "@/types/brand";
 import type { CategoryType } from "@/types/category";
-import LoginRegister from "@/components/Dialog/LoginRegister.vue"
+import LoginRegister from "@/components/Dialog/LoginRegister.vue";
 
 const router = useRouter();
 const services: Ref<{ [key: string]: string }[]> = ref([
@@ -21,11 +21,18 @@ const loginRegisterDialog: Ref<boolean> = ref(false);
 
 const closeDialog = () => {
   loginRegisterDialog.value = !loginRegisterDialog.value;
-}
+};
+
+const gotoProduct = (brand?: number, category?: number) => {
+  router.push({
+    name: "Products",
+    query: { category: category, brand: brand },
+  });
+};
 
 const goToCart = () => {
   router.push("/cart");
-}
+};
 
 const fetchData = async () => {
   categories.value = (await new Category().list()).data;
@@ -63,11 +70,13 @@ onMounted(fetchData);
     </p>
   </div>
   <header class="header padding-x-page">
-    <div class="logo">
-      <img src="../../assets/img/zapsoonlogo.png" alt="Zapsoon" />
-    </div>
+    <router-link to="/">
+      <div class="logo">
+        <img src="../../assets/img/zapsoonlogo.png" alt="Zapsoon" />
+      </div>
+    </router-link>
     <div class="search">
-      <v-text-field label="Search">
+      <v-text-field label="Search" variant="outlined">
         <template v-slot:prepend-inner-icon>
           <span class="mdi mdi-magnify"></span>
         </template>
@@ -87,7 +96,6 @@ onMounted(fetchData);
   </header>
   <nav class="nav-menu padding-x-page">
     <div class="menu">
-
       <v-menu v-for="category in categories" :key="category.categoryId">
         <template v-slot:activator="{ props }">
           <div v-bind="props" class="menu-item">
@@ -96,7 +104,12 @@ onMounted(fetchData);
           </div>
         </template>
         <v-list>
-          <v-list-item v-for="item in subCategories" :key="item" :value="item">
+          <v-list-item
+            v-for="item in subCategories"
+            :key="item"
+            :value="item"
+            @click="gotoProduct(undefined, category.categoryId)"
+          >
             <v-list-item-title>{{ item }}</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -109,20 +122,22 @@ onMounted(fetchData);
           </div>
         </template>
         <v-list>
-          <v-list-item v-for="brand in brands" :key="brand.brandId" :value="brand">
+          <v-list-item
+            v-for="brand in brands"
+            :key="brand.brandId"
+            :value="brand"
+            @click="gotoProduct(brand.brandId, undefined)"
+          >
             <v-list-item-title>{{ brand.name }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
     </div>
-    <v-dialog
-      v-model="loginRegisterDialog"
-      width="auto"
-    >
+    <v-dialog v-model="loginRegisterDialog" width="auto">
       <template v-slot:activator="{ props }">
         <p v-bind="props">Sign In / Register</p>
       </template>
-      <LoginRegister @close-dialog="closeDialog"/>
+      <LoginRegister @close-dialog="closeDialog" />
     </v-dialog>
   </nav>
 </template>

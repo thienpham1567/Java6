@@ -10,3 +10,21 @@
     color: #fff;
   }
 }
+
+.items {
+  padding: 20px;
+  .item {
+    display: flex;
+    justify-content: space-between;
+
+    .content-item{
+      display: flex;
+      gap: 10px;
+      img{
+        border-radius: 5px;
+        width: 150px;
+        box-shadow: 0 3px 8px rgb(0 0 0 / 0.2);
+      }
+    }
+  }
+}

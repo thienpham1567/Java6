@@ -1,36 +1,24 @@
+import { ref, type Ref } from "vue";
+import { defineStore } from "pinia";
 import { useGlobalStore } from "@/store";
 import type { ProductType } from "@/types/product";
-import { defineStore } from "pinia";
 import Product from "@/models/Product";
+import { computed } from "vue";
 
-interface ProductState {
-  productList: ProductType[];
-}
+const useProductStore = defineStore("product", () => {
+  const productList: Ref<ProductType[]> = ref([]);
 
-export default defineStore("product", {
-  state: (): ProductState => ({
-    productList: [],
-  }),
+  const getProducts = computed(() => productList);
 
-  getters: {
-    products(): ProductType[] {
-      return this.productList;
-    },
-  },
+  const fetchProducts = async (brand?: number, category?: number) => {
+    const { getLoading, setLoading } = useGlobalStore();
+    setLoading(false);
+    const { data } = await new Product().list({ brand, category });
+    productList.value = data;
+    setLoading(true);
+  };
 
-  actions: {
-    async getList() {
-      const { getLoading, setLoading } = useGlobalStore();
-      setLoading(false);
-      const { data } = await new Product().list();
-      this.productList = data;
-      setLoading(true);
-    },
-  },
-
-  // Data persistence destination
-  persist: {
-    key: "product",
-    storage: window.sessionStorage,
-  },
+  return { getProducts, fetchProducts };
 });
+
+export default useProductStore;
