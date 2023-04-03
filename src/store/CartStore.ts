@@ -1,26 +1,54 @@
-import type { OrderType } from "@/types/order";
+import { ref, type Ref } from "vue";
 import { defineStore } from "pinia";
-import { v4 as uuidv4 } from 'uuid';
+import type { OrderType } from "@/types/order";
+import type { OrderDetailType } from "@/types/orderDetail";
+import { v4 as uuidv4 } from "uuid";
+import { useProductStore } from "@/store";
+import { computed } from "vue";
+import OrderStatus from "@/types/orderStatus";
+import { getTotalPriceInOrder } from "@/utils/cart";
 
-interface OrderState {
-  myOrder: OrderType;
-}
+const useCartStore = defineStore("cart", () => {
+  // State
+  const orderDetails: Ref<Map<number, OrderDetailType>> = ref(new Map());
+  const order: Ref<OrderType> = ref({});
 
-export default defineStore("cart", {
-  state: (): OrderState => ({
-    myOrder: {},
-  }),
+  // Getters
+  const myOrder = computed(() => orderDetails);
 
-  getters: {
+  // Actions
+  const addUpToCart = (productId: number, quantity: number): void => {
+    let existInCart: boolean = orderDetails.value.has(productId);
+    if (existInCart) {
+      let targetItem: OrderDetailType = orderDetails.value.get(productId)!;
+      targetItem.quantity = targetItem?.quantity! + quantity;
+    } else {
+      const { getProducts } = useProductStore();
+      const product = getProducts.value.find(
+        product => (product.productId = productId)
+      );
+      let newItem: OrderDetailType = {
+        productId: productId,
+        quantity: quantity,
+        detailPrice: product?.price! * quantity,
+      };
+      orderDetails.value.set(product?.productId!, newItem);
+    }
+  };
 
-  },
+  const removeItemFromCart = (productId: number): void => {
+    orderDetails.value.delete(productId);
+  };
 
-  actions: {
-  },
+  const createOrder = (): OrderType => {
+    return {
+      orderStatusId: OrderStatus.PendingPayment,
+      orderAmount: getTotalPriceInOrder(Array.from(orderDetails.value.values)),
+      orderItems: Array.from(orderDetails.value.values),
+    };
+  };
 
-  // Data persistence destination
-  persist: {
-    key: "order",
-    storage: window.sessionStorage,
-  },
+  return { myOrder, addUpToCart, removeItemFromCart, createOrder };
 });
+
+export default useCartStore;

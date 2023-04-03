@@ -1,16 +1,16 @@
-export interface OrderDetailType{
-  orderDetailId?:number;
-	productId?:number;
-	orderId?:number;
-	detailPrice?:number;
-	quantity?:number;
+export interface OrderDetailType {
+  orderDetailId?: number;
+  productId?: number;
+  orderId?: number;
+  detailPrice?: number;
+  quantity?: number;
 }
 
 export interface CreationParams {
-	productId?:number;
-	orderId?:number;
-	detailPrice?:number;
-	quantity?:number;
+  productId?: number;
+  orderId?: number;
+  detailPrice?: number;
+  quantity?: number;
 }
 
 export type UpdateParams = Omit<OrderDetailType, "id">;

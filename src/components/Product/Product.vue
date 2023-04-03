@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { ref, type Ref } from "vue";
-import { useGlobalStore } from "@/store";
+import { useCartStore, useGlobalStore } from "@/store";
 import { useRoute } from "vue-router";
 import Product from "@/models/Product";
 import type { ProductType } from "@/types/product";
 
 const route = useRoute();
 const { getLoading, setLoading } = useGlobalStore();
+const { addUpToCart } = useCartStore();
 const { productId } = route.params;
 const product: Ref<ProductType | undefined> = ref({});
 
@@ -44,7 +45,7 @@ onMounted(getProductById);
         <div class="">
           <p>Sizes:</p>
         </div>
-        <v-btn color="light-blue-darken-3" size="large" class="mt-auto" block>
+        <v-btn color="light-blue-darken-3" size="large" class="mt-auto w-100" @click="addUpToCart(product?.productId!, 1)">
           Add To Cart
         </v-btn>
       </v-col>

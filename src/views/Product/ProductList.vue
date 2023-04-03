@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useProductStore } from "@/store";
+import { useCartStore, useProductStore } from "@/store";
 import { useGlobalStore } from "@/store";
 
 const route = useRoute();
 const { getLoading } = useGlobalStore();
 const { getProducts, fetchProducts } = useProductStore();
+const { addUpToCart } = useCartStore();
 
 watch(
   () => route.query,
@@ -38,21 +39,25 @@ onMounted(async () => {
         sm="6"
         lg="4"
       >
-        <router-link
-          :to="{ name: 'Product', params: { productId: product.productId } }"
-          class="text-decoration-none"
-        >
-          <v-card max-width="500">
+        <v-card max-width="500">
+          <router-link
+            :to="{ name: 'Product', params: { productId: product.productId } }"
+          >
             <v-img height="400" :src="product.imageLink" cover></v-img>
-            <v-card-title>{{ product.name }}</v-card-title>
-            <v-card-subtitle class="pt-4">
-              ${{ product.price?.toFixed(2) }}
-            </v-card-subtitle>
-            <v-card-actions>
-              <v-btn color="light-blue-darken-3">Quick order</v-btn>
-            </v-card-actions>
-          </v-card>
-        </router-link>
+          </router-link>
+          <v-card-title>{{ product.name }}</v-card-title>
+          <v-card-subtitle class="pt-4">
+            ${{ product.price?.toFixed(2) }}
+          </v-card-subtitle>
+          <v-card-actions>
+            <v-btn
+              color="light-blue-darken-3"
+              @click="addUpToCart(product?.productId!, 1)"
+            >
+              Quick order
+            </v-btn>
+          </v-card-actions>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>

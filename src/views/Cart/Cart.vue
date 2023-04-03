@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
+import { useCartStore, useGlobalStore } from "@/store";
+import CartItem from "@/components/Cart/CartItem.vue";
 import { onMounted } from "vue";
-import { useGlobalStore } from "@/store";
 
 const { getLoading } = useGlobalStore();
-const quantity: Ref<Number> = ref(1);
+const { myOrder, addUpToCart, removeItemFromCart } = useCartStore();
 
-const logQuantity = () => {
-  console.log(quantity.value);
-};
+onMounted(() => {
+  console.log(myOrder.value);
+})
 </script>
 
 <template>
@@ -29,31 +30,12 @@ const logQuantity = () => {
             <p>Price / Quantity</p>
           </v-card-title>
           <div class="items">
-            <div class="item">
-              <div class="content-item">
-                <img
-                  src="https://m.media-amazon.com/images/I/71xmGzaTFJL._SR255,340_.jpg"
-                  alt="item"
-                />
-                <p>Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="action-item">
-                <p>$200</p>
-                <v-select
-                  v-model="quantity"
-                  label="Select"
-                  :items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-                  variant="solo"
-                  @update:model-value="logQuantity"
-                ></v-select>
-                <v-btn
-                  prepend-icon="mdi-trash-can-outline"
-                  color="light-blue-darken-3"
-                >
-                  Remove
-                </v-btn>
-              </div>
-            </div>
+            <template
+              v-for="orderItem in myOrder"
+              :key="orderItem?.orderDetailId"
+            >
+              <CartItem :orderItem="orderItem" />
+            </template>
           </div>
         </v-card>
       </v-col>

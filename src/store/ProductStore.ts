@@ -6,10 +6,13 @@ import Product from "@/models/Product";
 import { computed } from "vue";
 
 const useProductStore = defineStore("product", () => {
+  // State
   const productList: Ref<ProductType[]> = ref([]);
 
+  // Getters
   const getProducts = computed(() => productList);
 
+  // Actions
   const fetchProducts = async (brand?: number, category?: number) => {
     const { getLoading, setLoading } = useGlobalStore();
     setLoading(false);
