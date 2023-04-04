@@ -24,11 +24,22 @@ const signInGoogle = () => {
     </div>
     <v-divider :thickness="2" class="border-opacity-25"></v-divider>
     <div class="account-btns">
-      <v-btn color="light-blue-darken-3" variant="outlined" block @click="signInZapsoon">Sign in with Zapsoon</v-btn>
-      <v-btn color="light-blue-darken-3" variant="outlined" block @click="signInGoogle">Sign in with Google</v-btn>
-      <v-btn color="light-blue-darken-3" variant="outlined" block>Sign in with Facebook</v-btn>
+      <v-btn color="light-blue-darken-3" variant="outlined" size="large" block @click="signInZapsoon">
+        <img src="@/assets/img/zapsoonlogo.png" alt="facebook">
+        Sign in with Zapsoon
+      </v-btn>
+      <v-btn color="light-blue-darken-3" variant="outlined" size="large" block @click="signInGoogle">
+        <img src="@/assets/img/icons8-google-48.png" alt="google">
+        Sign in with Google
+      </v-btn>
+      <v-btn color="light-blue-darken-3" variant="outlined" size="large" block>
+        <img src="@/assets/img/icons8-facebook-48.png" alt="facebook">
+        Sign in with Facebook
+      </v-btn>
       <p class="text-center">or</p>
-      <v-btn color="light-blue-darken-3" variant="outlined" block @click="createAccountZapsoon">Create your Zapsoon account</v-btn>
+      <v-btn color="light-blue-darken-3" variant="outlined" size="large" block @click="createAccountZapsoon">
+        Create your Zapsoon account
+      </v-btn>
     </div>
   </v-card>
 </template>

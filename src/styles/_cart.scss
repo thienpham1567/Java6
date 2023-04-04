@@ -1,10 +1,10 @@
-.cart-title{
-  background-color: #0277BD;
+.cart-title {
+  background-color: #0277bd;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  p{
+  p {
     font-size: 17px;
     font-weight: 400;
     color: #fff;
@@ -13,18 +13,27 @@
 
 .items {
   padding: 20px;
+  .item:last-child {
+    border-bottom: none;
+  }
   .item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
-    .content-item{
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(0,0,0,0.1);
+    .content-item {
       display: flex;
       gap: 10px;
-      img{
+      margin-bottom: 20px;
+      img {
         border-radius: 5px;
         width: 160px;
-        height: 200px;
-        box-shadow: 0 3px 8px rgb(0 0 0 / 0.2);
+        height: 190px;
+        box-shadow: 0 2px 5px rgb(0,0,0,0.2);
+        background-size: cover;
+      }
+      p {
+        font-weight: 500;
       }
     }
   }

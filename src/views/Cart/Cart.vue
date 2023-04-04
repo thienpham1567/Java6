@@ -2,14 +2,13 @@
 import { ref, type Ref } from "vue";
 import { useCartStore, useGlobalStore } from "@/store";
 import CartItem from "@/components/Cart/CartItem.vue";
-import { onMounted } from "vue";
+import { getTotalPriceInOrder } from "@/utils/cart";
 
 const { getLoading } = useGlobalStore();
-const { myOrder, addUpToCart, removeItemFromCart } = useCartStore();
+const { myOrder, myOrderItems, addUpToCart, removeItemFromCart } = useCartStore();
+const subtotal = getTotalPriceInOrder(myOrderItems);
 
-onMounted(() => {
-  console.log(myOrder.value);
-})
+
 </script>
 
 <template>
@@ -34,7 +33,7 @@ onMounted(() => {
               v-for="orderItem in myOrder"
               :key="orderItem?.orderDetailId"
             >
-              <CartItem :orderItem="orderItem" />
+              <CartItem :order-item="orderItem[1]" />
             </template>
           </div>
         </v-card>
@@ -44,7 +43,7 @@ onMounted(() => {
           <v-card-title>Cart Summary</v-card-title>
           <v-card-text class="d-flex align-center justify-space-between">
             <p>Subtotal:</p>
-            <p>$333</p>
+            <p>${{ subtotal }}</p>
           </v-card-text>
           <v-card-actions>
             <v-btn
@@ -54,7 +53,7 @@ onMounted(() => {
               variant="tonal"
               block
             >
-              My Cart
+              Checkout
             </v-btn>
           </v-card-actions>
         </v-card>

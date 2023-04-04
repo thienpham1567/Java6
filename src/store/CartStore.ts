@@ -16,17 +16,28 @@ const useCartStore = defineStore("cart", () => {
   // Getters
   const myOrder = computed(() => orderDetails);
 
+  const myOrderItems = computed((): OrderDetailType[] => {
+    const orderItems = [];
+    for (const orderItem of orderDetails.value) {
+      orderItems.push(orderItem[1]);
+    }
+    return orderItems;
+  });
+
+
+
   // Actions
   const addUpToCart = (productId: number, quantity: number): void => {
     let existInCart: boolean = orderDetails.value.has(productId);
+    const { getProducts } = useProductStore();
+    const product = getProducts.value.find(
+      product => (product.productId = productId)
+    );
     if (existInCart) {
       let targetItem: OrderDetailType = orderDetails.value.get(productId)!;
-      targetItem.quantity = targetItem?.quantity! + quantity;
+      targetItem.quantity = targetItem.quantity! + quantity;
+      targetItem.detailPrice = targetItem.quantity * product?.price!;
     } else {
-      const { getProducts } = useProductStore();
-      const product = getProducts.value.find(
-        product => (product.productId = productId)
-      );
       let newItem: OrderDetailType = {
         productId: productId,
         quantity: quantity,
@@ -40,15 +51,17 @@ const useCartStore = defineStore("cart", () => {
     orderDetails.value.delete(productId);
   };
 
-  const createOrder = (): OrderType => {
-    return {
+  const createOrder = (): void => {
+    const myOrder = {
       orderStatusId: OrderStatus.PendingPayment,
-      orderAmount: getTotalPriceInOrder(Array.from(orderDetails.value.values)),
-      orderItems: Array.from(orderDetails.value.values),
+      orderAmount: 0,
+      orderItems: myOrderItems.value,
     };
+    myOrder.orderAmount = getTotalPriceInOrder(myOrder.orderItems);
+    order.value = myOrder;
   };
 
-  return { myOrder, addUpToCart, removeItemFromCart, createOrder };
+  return { myOrder, myOrderItems, addUpToCart, removeItemFromCart, createOrder };
 });
 
 export default useCartStore;

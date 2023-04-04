@@ -37,7 +37,8 @@ onMounted(async () => {
         :key="product.productId"
         cols="12"
         sm="6"
-        lg="4"
+        md="4"
+        lg="3"
       >
         <v-card max-width="500">
           <router-link
