@@ -3,21 +3,21 @@ import type {
   CreationParams,
   CreationResponse,
   ListResponse,
-  ProductResponse,
-  QueryProductParams,
+  ProductItemResponse,
+  QueryProductItemParams,
   UpdateParams,
-} from "@/types/product";
+} from "@/types/productItem";
 
 class Product extends HTTPBaseService {
   public constructor() {
     super();
   }
 
-  async list(params: QueryProductParams): Promise<ListResponse> {
+  async list(params: QueryProductItemParams): Promise<ListResponse> {
     return await this.instance.get("/products", { params });
   }
 
-  async detail(id: number): Promise<ProductResponse> {
+  async detail(id: number): Promise<ProductItemResponse> {
     return await this.instance.get(`/products/${id}`);
   }
 
@@ -25,7 +25,7 @@ class Product extends HTTPBaseService {
     return await this.instance.post("/products", params);
   }
 
-  async update(id: number, params: UpdateParams): Promise<ProductResponse> {
+  async update(id: number, params: UpdateParams): Promise<ProductItemResponse> {
     return await this.instance.put(`/products/${id}`, params);
   }
 

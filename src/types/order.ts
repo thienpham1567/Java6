@@ -1,20 +1,22 @@
-import type { OrderDetailType } from "./orderDetail";
+import type { OrderLineType } from "./orderLine";
 
 export interface OrderType{
 	orderId?:number;
 	userId?:number;
-	orderStatusId?:number;
-  orderAddress?:string;
-	orderAmount?:number;
-  orderItems?:OrderDetailType[];
+	orderStatus?:string;
+  denormalizedAddress?:string;
+	orderTotalPrice?:number;
+  orderItems?:OrderLineType[];
+  createdAt?:Date;
+  updatedAt?:Date;
 }
 
 export interface CreationParams {
 	userId?:number;
-	orderStatusId?:number;
-  orderAddress?:string;
-	orderAmount?:number;
-  orderItems?:OrderDetailType[];
+	orderStatus?:string;
+  denormalizedAddress?:string;
+	orderTotalPrice?:number;
+  orderItems?:OrderLineType[];
 }
 
 export type UpdateParams = Omit<OrderType, "id">;

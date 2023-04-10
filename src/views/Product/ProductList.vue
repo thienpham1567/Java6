@@ -12,7 +12,9 @@ const { addUpToCart } = useCartStore();
 watch(
   () => route.query,
   async toParams => {
-    await fetchProducts(toParams.brand, toParams.category);
+    if(toParams.brand || toParams.category){
+      await fetchProducts(toParams.brand, toParams.category);
+    }
   }
 );
 
@@ -42,11 +44,11 @@ onMounted(async () => {
       >
         <v-card max-width="500">
           <router-link
-            :to="{ name: 'Product', params: { productId: product.productId } }"
+            :to="{ name: 'Product', params: { productId: product.productItemId } }"
           >
-            <v-img height="400" :src="product.imageLink" cover></v-img>
+            <v-img height="400" :src="product.imageUrl?.split('|')[0]" cover></v-img>
           </router-link>
-          <v-card-title>{{ product.name }}</v-card-title>
+          <v-card-subtitle class="font-weight-bold">{{ product.product?.name }}</v-card-subtitle>
           <v-card-subtitle class="pt-4">
             ${{ product.price?.toFixed(2) }}
           </v-card-subtitle>

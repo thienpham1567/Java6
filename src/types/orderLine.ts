@@ -1,19 +1,19 @@
-export interface OrderDetailType {
-  orderDetailId?: number;
-  productId?: number;
+export interface OrderLineType {
+  orderLineId?: number;
+  productItemId?: number;
   orderId?: number;
-  detailPrice?: number;
+  price?: number;
   quantity?: number;
 }
 
 export interface CreationParams {
   productId?: number;
   orderId?: number;
-  detailPrice?: number;
+  price?: number;
   quantity?: number;
 }
 
-export type UpdateParams = Omit<OrderDetailType, "id">;
+export type UpdateParams = Omit<OrderLineType, "id">;
 
 export interface CreationResponse {
   status: boolean;
@@ -23,6 +23,6 @@ export interface CreationResponse {
 
 export interface OrderResponse {
   status: boolean;
-  data?: OrderDetailType;
+  data?: OrderLineType;
   message?: string;
 }

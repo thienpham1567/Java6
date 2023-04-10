@@ -4,13 +4,13 @@ import { ref, type Ref } from "vue";
 import { useCartStore, useGlobalStore } from "@/store";
 import { useRoute } from "vue-router";
 import Product from "@/models/Product";
-import type { ProductType } from "@/types/product";
+import type { ProductItemType } from "@/types/productItem";
 
 const route = useRoute();
 const { getLoading, setLoading } = useGlobalStore();
 const { addUpToCart } = useCartStore();
 const { productId } = route.params;
-const product: Ref<ProductType | undefined> = ref({});
+const product: Ref<ProductItemType | undefined> = ref({});
 
 const getProductById = async () => {
   setLoading(true);
@@ -34,10 +34,10 @@ onMounted(getProductById);
   <v-container v-else class="padding-y-page">
     <v-row>
       <v-col cols="12" md="7">
-        <v-img cover :src="product?.imageLink"></v-img>
+        <v-img cover :src="product?.imageUrl?.split('|')[0]"></v-img>
       </v-col>
       <v-col cols="12" md="5" class="content-product">
-        <h1>{{ product?.name }}</h1>
+        <h1>{{ product?.product?.name }}</h1>
         <v-chip color="light-blue-darken-3" class="text-h5 font-weight-bold">${{ product?.price?.toFixed(2) }}</v-chip>
         <div class="mt-5">
           <p>Colors:</p>

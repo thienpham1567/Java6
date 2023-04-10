@@ -1,3 +1,4 @@
+import { watch } from 'vue';
 import { defineStore } from "pinia";
 
 interface GlobalState {

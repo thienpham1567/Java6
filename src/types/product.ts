@@ -1,21 +1,18 @@
 export interface ProductType {
   productId?: number;
   name?: string;
-  imageLink?: string;
-  inStock?: number;
-  price?: number;
-  isAvailable?: boolean;
+  description?: string;
   brandId?: number;
   categoryId?: number;
+  createdAt:Date;
+  updatedAt:Date;
 }
 
 export interface CreationParams {
-  name: string;
-  image_link: string;
-  in_stock: number;
-  is_available: boolean;
-  brand_id: number;
-  category_id: number;
+  name?: string;
+  description?: string;
+  brandId?: number;
+  categoryId?: number;
 }
 
 export type UpdateParams = Omit<ProductType, "id">;

@@ -2,11 +2,9 @@
 import { ref, type Ref } from "vue";
 import { useCartStore, useGlobalStore } from "@/store";
 import CartItem from "@/components/Cart/CartItem.vue";
-import { getTotalPriceInOrder } from "@/utils/cart";
 
 const { getLoading } = useGlobalStore();
-const { myOrder, myOrderItems, addUpToCart, removeItemFromCart } = useCartStore();
-const subtotal = getTotalPriceInOrder(myOrderItems);
+const { myOrder, mySubtotalOrder } = useCartStore();
 
 
 </script>
@@ -43,7 +41,7 @@ const subtotal = getTotalPriceInOrder(myOrderItems);
           <v-card-title>Cart Summary</v-card-title>
           <v-card-text class="d-flex align-center justify-space-between">
             <p>Subtotal:</p>
-            <p>${{ subtotal }}</p>
+            <p>${{ mySubtotalOrder }}</p>
           </v-card-text>
           <v-card-actions>
             <v-btn

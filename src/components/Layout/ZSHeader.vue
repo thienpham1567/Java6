@@ -14,8 +14,9 @@ const services: Ref<{ [key: string]: string }[]> = ref([
   { title: "FAQ" },
   { title: "Give Us Feedback" },
 ]);
-const subCategories: Ref<string[]> = ref(["Shop all shoes"]);
+
 const categories: Ref<CategoryType[]> = ref([]);
+let mainCategories:Ref<any> = ref([]);
 const brands: Ref<BrandType[]> = ref([]);
 const loginRegisterDialog: Ref<boolean> = ref(false);
 
@@ -37,7 +38,15 @@ const goToCart = () => {
 const fetchData = async () => {
   categories.value = (await new Category().list()).data;
   brands.value = (await new Brand().list()).data;
+  createCategories();
 };
+
+const createCategories = () => {
+  mainCategories.value = [categories.value[0],categories.value[1],categories.value[2]];
+  for (const category1 of mainCategories.value) {
+    category1.children = categories.value.filter(category2 => category2.parentCategory?.categoryId === category1.categoryId);
+  }
+}
 
 onMounted(fetchData);
 </script>
@@ -96,21 +105,21 @@ onMounted(fetchData);
   </header>
   <nav class="nav-menu padding-x-page">
     <div class="menu">
-      <v-menu v-for="category in categories" :key="category.categoryId">
+      <v-menu v-for="category in mainCategories" :key="category.categoryId">
         <template v-slot:activator="{ props }">
           <div v-bind="props" class="menu-item">
-            <p>{{ category.code }}</p>
+            <p>{{ category.name }}</p>
             <span class="mdi mdi-arrow-down-thin"></span>
           </div>
         </template>
         <v-list>
           <v-list-item
-            v-for="item in subCategories"
-            :key="item"
-            :value="item"
-            @click="gotoProduct(undefined, category.categoryId)"
+            v-for="child in category.children"
+            :key="child.categoryId"
+            :value="child.name"
+            @click="gotoProduct(undefined, child.categoryId)"
           >
-            <v-list-item-title>{{ item }}</v-list-item-title>
+            <v-list-item-title>{{ child.name }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>

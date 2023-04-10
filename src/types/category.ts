@@ -2,6 +2,7 @@ export interface CategoryType {
   categoryId?: number;
   code?: string;
   description?: string;
+  parentCategory?:CategoryType;
 }
 
 export interface CreationParams {
