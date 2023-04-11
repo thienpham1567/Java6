@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
 import { onMounted } from "vue";
-import type { ProductType } from "@/types/product";
 import Product from "@/models/Product";
 import { useCartStore } from "@/store";
 import type { CartItemType } from "@/types/cartItem";
 import type { ProductItemType } from "@/types/productItem";
-import Cart from "@/models/Cart";
 
 export interface CartItemProps {
   cartItem: CartItemType;
@@ -41,10 +39,11 @@ const removeItem = (cartItemId: number) => {
     <div class="action-item">
       <p class="mb-2">${{ cartItem.price }}</p>
       <v-select
-        v-model="quantity"
+        v-model="cartItem.quantity"
         label="Select"
         :items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
         variant="solo"
+        @update:model-value="addUpToCart(cartItem.productItemId!,cartItem.quantity!)"
       ></v-select>
       <v-btn
         prepend-icon="mdi-trash-can-outline"

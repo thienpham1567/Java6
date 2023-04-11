@@ -4,12 +4,11 @@ import { useCartStore, useGlobalStore } from "@/store";
 import CartItem from "@/components/Cart/CartItem.vue";
 import type { CartItemType } from "@/types/cartItem";
 import Cart from "@/models/Cart";
-import { watch } from "vue";
 
 const { getLoading } = useGlobalStore();
-const { getCart, getTotalQuantity } = useCartStore();
 
 const cartItems: Ref<CartItemType[]> = ref([]);
+const totalSubPrice: Ref<number> = ref(0.0);
 
 const removeItem = (cartItemId: number) => {
   cartItems.value = cartItems.value.filter(
@@ -21,6 +20,7 @@ onMounted(async () => {
   const cartIdFromLocalStorege = localStorage.getItem("cartId");
   const { data } = await new Cart().list({ cartId: cartIdFromLocalStorege });
   cartItems.value = data!;
+  totalSubPrice.value = cartItems.value.reduce((price,item1) => price + item1.price!,0);
 });
 </script>
 
@@ -53,7 +53,7 @@ onMounted(async () => {
           <v-card-title>Cart Summary</v-card-title>
           <v-card-text class="d-flex align-center justify-space-between">
             <p>Subtotal:</p>
-            <p>${{ getCart.ItemSubtotalPrice?.toFixed(2) }}</p>
+            <p>${{ totalSubPrice.toFixed(2) }}</p>
           </v-card-text>
           <v-card-actions>
             <v-btn
