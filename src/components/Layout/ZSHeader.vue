@@ -7,6 +7,7 @@ import Category from "@/models/Category";
 import type { BrandType } from "@/types/brand";
 import type { CategoryType } from "@/types/category";
 import LoginRegister from "@/components/Dialog/LoginRegister.vue";
+import { useCartStore } from "@/store";
 
 const router = useRouter();
 const services: Ref<{ [key: string]: string }[]> = ref([
@@ -19,6 +20,7 @@ const categories: Ref<CategoryType[]> = ref([]);
 let mainCategories:Ref<any> = ref([]);
 const brands: Ref<BrandType[]> = ref([]);
 const loginRegisterDialog: Ref<boolean> = ref(false);
+const { getTotalQuantity } = useCartStore();
 
 const closeDialog = () => {
   loginRegisterDialog.value = !loginRegisterDialog.value;
@@ -98,7 +100,7 @@ onMounted(fetchData);
           variant="tonal"
           @click="goToCart"
         >
-          My Cart
+          My Cart ({{ getTotalQuantity }})
         </v-btn>
       </div>
     </div>

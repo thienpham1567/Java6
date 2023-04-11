@@ -15,6 +15,12 @@ export interface CreationResponse {
   message?: string;
 }
 
+export interface ListResponse {
+  status: boolean;
+  data?: CartItemType[];
+  message?: string;
+}
+
 export interface CartResponse {
   status: boolean;
   data?: CartType;

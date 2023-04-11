@@ -1,5 +1,5 @@
 import { HTTPBaseService } from "@/utils/request";
-import type { CartResponse } from "@/types/cart";
+import type { CartResponse, ListResponse } from "@/types/cart";
 import type { CartItemType } from "@/types/cartItem";
 
 class Cart extends HTTPBaseService {
@@ -7,8 +7,8 @@ class Cart extends HTTPBaseService {
     super();
   }
 
-  async list(): Promise<CartResponse> {
-    return await this.instance.get("/cart");
+  async list(params: {cartId?: string}): Promise<ListResponse> {
+    return await this.instance.get("/cart", { params });
   }
 
   async detail(id: string): Promise<CartResponse> {
@@ -19,9 +19,9 @@ class Cart extends HTTPBaseService {
     return await this.instance.post(`/cart/update`, params);
   }
 
-  delete(cartId: string, cartItem: number): void {
+  async delete(cartId: string, cartItem: number): Promise<CartResponse> {
     let params = { cartItem };
-    this.instance.delete(`/cart/remove/${cartId}`, { params });
+    return await this.instance.delete(`/cart/remove/${cartId}`, { params });
   }
 }
 

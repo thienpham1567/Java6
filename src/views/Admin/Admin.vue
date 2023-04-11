@@ -3,9 +3,7 @@ import { ref } from "vue";
 
 let drawer = ref(true);
 const items = ref([
-  { title: "Home", icon: "mdi-home-city" },
-  { title: "My Account", icon: "mdi-account" },
-  { title: "Users", icon: "mdi-account-group-outline" },
+  { title: "Order", icon: "mdi-home-city" },
 ]);
 let rail = ref(true);
 </script>
@@ -20,7 +18,7 @@ let rail = ref(true);
       >
         <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-          title="John Leider"
+          title="Admin"
           nav
         >
           <template v-slot:append>
@@ -37,23 +35,13 @@ let rail = ref(true);
         <v-list density="compact" nav>
           <v-list-item
             prepend-icon="mdi-home-city"
-            title="Home"
+            title="Orders"
             value="home"
-          ></v-list-item>
-          <v-list-item
-            prepend-icon="mdi-account"
-            title="My Account"
-            value="account"
-          ></v-list-item>
-          <v-list-item
-            prepend-icon="mdi-account-group-outline"
-            title="Users"
-            value="users"
           ></v-list-item>
         </v-list>
       </v-navigation-drawer>
       <v-main>
-        
+
       </v-main>
     </v-layout>
   </v-card>

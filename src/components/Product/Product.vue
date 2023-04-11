@@ -45,7 +45,7 @@ onMounted(getProductById);
         <div class="">
           <p>Sizes:</p>
         </div>
-        <v-btn color="light-blue-darken-3" size="large" class="mt-auto w-100" @click="addUpToCart(product?.productItemId!, 1)">
+        <v-btn color="light-blue-darken-3" size="large" class="mt-auto w-100" @click="addUpToCart(+productId, 1)">
           Add To Cart
         </v-btn>
       </v-col>

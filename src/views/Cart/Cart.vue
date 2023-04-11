@@ -1,12 +1,27 @@
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
+import { onMounted, ref, type Ref } from "vue";
 import { useCartStore, useGlobalStore } from "@/store";
 import CartItem from "@/components/Cart/CartItem.vue";
+import type { CartItemType } from "@/types/cartItem";
+import Cart from "@/models/Cart";
+import { watch } from "vue";
 
 const { getLoading } = useGlobalStore();
-const { getCartItems } = useCartStore();
+const { getCart, getTotalQuantity } = useCartStore();
 
+const cartItems: Ref<CartItemType[]> = ref([]);
 
+const removeItem = (cartItemId: number) => {
+  cartItems.value = cartItems.value.filter(
+    cartItem => cartItem.cartItemId !== cartItemId
+  );
+};
+
+onMounted(async () => {
+  const cartIdFromLocalStorege = localStorage.getItem("cartId");
+  const { data } = await new Cart().list({ cartId: cartIdFromLocalStorege });
+  cartItems.value = data!;
+});
 </script>
 
 <template>
@@ -27,12 +42,9 @@ const { getCartItems } = useCartStore();
             <p>Price / Quantity</p>
           </v-card-title>
           <div class="items">
-            <div
-              v-for="cartItem in getCartItems"
-              :key="cartItem.cartItemId"
-            >
-              <CartItem :cart-item="cartItem"/>
-          </div>
+            <div v-for="cartItem in cartItems" :key="cartItem.cartItemId">
+              <CartItem :cart-item="cartItem" @subtract-length="removeItem" />
+            </div>
           </div>
         </v-card>
       </v-col>
@@ -41,7 +53,7 @@ const { getCartItems } = useCartStore();
           <v-card-title>Cart Summary</v-card-title>
           <v-card-text class="d-flex align-center justify-space-between">
             <p>Subtotal:</p>
-            <p>${{ mySubtotalOrder }}</p>
+            <p>${{ getCart.ItemSubtotalPrice?.toFixed(2) }}</p>
           </v-card-text>
           <v-card-actions>
             <v-btn

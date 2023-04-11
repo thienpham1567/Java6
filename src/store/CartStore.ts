@@ -14,20 +14,39 @@ const useCartStore = defineStore("cart", () => {
 
   // Getters
   const getCartItems = computed(() => cartItems);
+  const getCart = computed(() => cart);
+
+  const getTotalQuantity = computed(() => cart.value.ItemTotalQuantity);
 
   // Actions
   const addUpToCart = async (productItemId: number, quantity: number) => {
-    let cartItem: CreationParams = {productItemId, cartId:cart.value.cartId ?? "", quantity};
-    const { data } = await new Cart().create(cartItem);
+    const cartIdFromLocalStorege = localStorage.getItem("cartId");
+    if (cartIdFromLocalStorege !== null) {
+      let cartItem: CreationParams = {
+        productItemId: productItemId,
+        cartId: cartIdFromLocalStorege,
+        quantity: quantity,
+      };
+      const { data } = await new Cart().create(cartItem);
+      cart.value = data!;
+    } else {
+      let cartItem: CreationParams = {
+        productItemId: productItemId,
+        quantity: quantity,
+      };
+      const { data } = await new Cart().create(cartItem);
+      cart.value = data!;
+      localStorage.setItem("cartId", cart.value.cartId!);
+    }
+  };
+
+  const removeItemFromCart = async (cartItemId: number) => {
+    const cartId = cart.value.cartId! ?? localStorage.getItem("cartId");
+    const { data } = await new Cart().delete(cartId,cartItemId);
     cart.value = data!;
-    cartItems.value = cart.value.cartItems!;
   };
 
-  const removeItemFromCart = (cartItemId: number) => {
-
-  };
-
-  return { getCartItems, addUpToCart, removeItemFromCart};
+  return { getCart, getCartItems, getTotalQuantity, addUpToCart, removeItemFromCart };
 });
 
 export default useCartStore;
