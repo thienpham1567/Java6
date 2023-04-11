@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
-import type { OrderDetailType } from "@/types/orderLines";
 import { onMounted } from "vue";
 import type { ProductType } from "@/types/product";
 import Product from "@/models/Product";
 import { useCartStore } from "@/store";
+import type { CartItemType } from "@/types/cartItem";
+import type { ProductItemType } from "@/types/productItem";
 
 export interface CartItemProps {
-  orderItem: OrderDetailType;
+  cartItem: CartItemType;
 }
 
 onMounted(async () => {
-  product.value = (await new Product().detail(orderItem.productId!)).data!;
+  product.value = (await new Product().detail(cartItem?.productItemId!)).data!;
 });
 
 const { addUpToCart, removeItemFromCart } = useCartStore();
-const { orderItem } = defineProps<CartItemProps>();
-const product: Ref<ProductType> = ref({});
+const { cartItem } = defineProps<CartItemProps>();
+const product: Ref<ProductItemType> = ref({});
 const quantity: Ref<number> = ref(1);
 
 
@@ -26,20 +27,20 @@ const quantity: Ref<number> = ref(1);
   <div class="item">
     <div class="content-item">
       <img
-        :src="product.imageLink"
+        :src="product.imageUrl?.split('|')[0]"
         alt="item"
       />
-      <p>{{ product.name }}</p>
+      <p>{{ product.product?.name }}</p>
     </div>
     <div class="action-item">
-      <p class="mb-2">${{ orderItem.detailPrice }}</p>
+      <p class="mb-2">${{ cartItem.price }}</p>
       <v-select
         v-model="quantity"
         label="Select"
         :items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
         variant="solo"
       ></v-select>
-        <v-btn prepend-icon="mdi-trash-can-outline" color="light-blue-darken-3" class="mt-10" @click="removeItemFromCart(product.productId!)">
+        <v-btn prepend-icon="mdi-trash-can-outline" color="light-blue-darken-3" class="mt-10" @click="removeItemFromCart(cartItem.cartItemId!)">
           Remove
         </v-btn>
     </div>

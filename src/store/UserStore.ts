@@ -1,25 +1,20 @@
+import Account from "@/models/Account";
 import type { UserType } from "@/types/user";
 import { defineStore } from "pinia";
+import type { Ref } from "vue";
+import { ref } from "vue";
+import jwt_decode from "jwt-decode";
 
-interface UserState {
-  currentUser: UserType;
-}
+const useUserStore = defineStore("user", () => {
+  const user: Ref<UserType> = ref({});
 
-export default defineStore("product", {
-  state: (): UserState => ({
-    currentUser: {},
-  }),
+  async function login(email: string, password: string) {
+    const token = await new Account().login({email,password});
+    const user = jwt_decode(token);
+    console.log(user);
+  }
 
-  getters: {
-
-  },
-
-  actions: {
-  },
-
-  // Data persistence destination
-  persist: {
-    key: "user",
-    storage: window.sessionStorage,
-  },
+  return { login }
 });
+
+export default useUserStore;

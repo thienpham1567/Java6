@@ -1,67 +1,33 @@
 import { ref, type Ref } from "vue";
 import { defineStore } from "pinia";
-import type { OrderType } from "@/types/order";
-import type { OrderDetailType } from "@/types/orderLine";
+import type { CartType } from "@/types/cart";
+import type { CartItemType, CreationParams } from "@/types/cartItem";
 import { v4 as uuidv4 } from "uuid";
 import { useProductStore } from "@/store";
 import { computed } from "vue";
-import OrderStatus from "@/enum/orderStatus";
-import { watch } from "vue";
+import Cart from "@/models/Cart";
 
 const useCartStore = defineStore("cart", () => {
   // State
-  const orderItems: Ref<Map<number, OrderDetailType>> = ref(new Map());
-  const order: Ref<OrderType> = ref({});
-  const subtotalOrder = ref(0);
+  const cartItems: Ref<CartItemType[]> = ref([]);
+  const cart: Ref<CartType> = ref({});
 
   // Getters
-  const myOrder = computed(() => orderItems);
-  const mySubtotalOrder = computed(() => subtotalOrder);
-
-  watch(orderItems.value, (updatedOrder, oldOrder) => {
-    let subtotal = 0;
-    for (const orderItem of updatedOrder) {
-      subtotal += orderItem[1].detailPrice!;
-    }
-    subtotalOrder.value = subtotal;
-  })
+  const getCartItems = computed(() => cartItems);
 
   // Actions
-  const addUpToCart = (productId: number, quantity: number): void => {
-    let existInCart: boolean = orderItems.value.has(productId);
-    const { getProducts } = useProductStore();
-    const product = getProducts.value.find(
-      product => (product.productId = productId)
-    );
-    if (existInCart) {
-      let targetItem: OrderDetailType = orderItems.value.get(productId)!;
-      targetItem.quantity = targetItem.quantity! + quantity;
-      targetItem.detailPrice = targetItem.quantity * product?.price!;
-    } else {
-      let newItem: OrderDetailType = {
-        productId: productId,
-        quantity: quantity,
-        detailPrice: product?.price! * quantity,
-      };
-      orderItems.value.set(product?.productId!, newItem);
-    }
+  const addUpToCart = async (productItemId: number, quantity: number) => {
+    let cartItem: CreationParams = {productItemId, cartId:cart.value.cartId ?? "", quantity};
+    const { data } = await new Cart().create(cartItem);
+    cart.value = data!;
+    cartItems.value = cart.value.cartItems!;
   };
 
-  const removeItemFromCart = (productId: number): void => {
-    orderItems.value.delete(productId);
+  const removeItemFromCart = (cartItemId: number) => {
+
   };
 
-  const createOrder = (): void => {
-    // const myOrder = {
-    //   orderStatusId: OrderStatus.PendingPayment,
-    //   orderAmount: 0,
-    //   orderItems: myOrderItems.value,
-    // };
-    // myOrder.orderAmount = getTotalPriceInOrder(myOrder.orderItems);
-    // order.value = myOrder;
-  };
-
-  return { myOrder, mySubtotalOrder, addUpToCart, removeItemFromCart, createOrder };
+  return { getCartItems, addUpToCart, removeItemFromCart};
 });
 
 export default useCartStore;

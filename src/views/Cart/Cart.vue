@@ -4,7 +4,7 @@ import { useCartStore, useGlobalStore } from "@/store";
 import CartItem from "@/components/Cart/CartItem.vue";
 
 const { getLoading } = useGlobalStore();
-const { myOrder, mySubtotalOrder } = useCartStore();
+const { getCartItems } = useCartStore();
 
 
 </script>
@@ -27,12 +27,12 @@ const { myOrder, mySubtotalOrder } = useCartStore();
             <p>Price / Quantity</p>
           </v-card-title>
           <div class="items">
-            <template
-              v-for="orderItem in myOrder"
-              :key="orderItem?.orderDetailId"
+            <div
+              v-for="cartItem in getCartItems"
+              :key="cartItem.cartItemId"
             >
-              <CartItem :order-item="orderItem[1]" />
-            </template>
+              <CartItem :cart-item="cartItem"/>
+          </div>
           </div>
         </v-card>
       </v-col>

@@ -6,12 +6,12 @@ export interface CartItemType {
   orderId?: number;
   price?: number;
   quantity?: number;
+  cartId?:string;
 }
 
 export interface CreationParams {
-  productId?: number;
-  orderId?: number;
-  price?: number;
+  productItemId?: number;
+  cartId?: string;
   quantity?: number;
 }
 

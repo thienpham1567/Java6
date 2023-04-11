@@ -1,25 +1,21 @@
-import type { CartItemType } from './cartItem';
+import type { CartItemType } from "./cartItem";
 
-export interface CartType{
-	cartItemId?:number;
-  ItemTotalQuantity?:number;
-  ItemSubtotalPrice?:number;
-}
-
-export interface CreationParams {
-	ItemTotalQuantity?:number;
-  ItemSubtotalPrice?:number;
+export interface CartType {
+  cartId?: string;
+  ItemTotalQuantity?: number;
+  ItemSubtotalPrice?: number;
+  cartItems?: CartItemType[];
 }
 
 export type UpdateParams = Omit<CartType, "id">;
 
 export interface CreationResponse {
   status: boolean;
-  data: { id: number };
+  data: CartType;
   message?: string;
 }
 
-export interface OrderResponse {
+export interface CartResponse {
   status: boolean;
   data?: CartType;
   message?: string;

@@ -11,5 +11,6 @@ export default pinia;
 import useGlobalStore from './GlobalStore';
 import useProductStore from './ProductStore';
 import useCartStore from './CartStore'
+import useUserStore from './UserStore';
 
-export { useGlobalStore, useProductStore, useCartStore };
+export { useGlobalStore, useProductStore, useCartStore, useUserStore };

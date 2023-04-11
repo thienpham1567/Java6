@@ -52,14 +52,6 @@ onMounted(async () => {
           <v-card-subtitle class="pt-4">
             ${{ product.price?.toFixed(2) }}
           </v-card-subtitle>
-          <v-card-actions>
-            <v-btn
-              color="light-blue-darken-3"
-              @click="addUpToCart(product?.productId!, 1)"
-            >
-              Quick order
-            </v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
