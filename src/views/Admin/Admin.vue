@@ -46,10 +46,21 @@ let rail = ref(true);
             value="account"
           ></v-list-item>
           <v-list-item
+            prepend-icon="mdi-account"
+            title="Products"
+            value="product"
+          ></v-list-item>
+          <v-list-item
             prepend-icon="mdi-account-group-outline"
             title="Users"
             value="users"
           ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="User management"
+            value="userManagement"
+          ></v-list-item>
+          
         </v-list>
       </v-navigation-drawer>
       <v-main>
