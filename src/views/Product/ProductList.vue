@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useCartStore, useProductStore } from "@/store";
+import { useProductStore } from "@/store";
 import { useGlobalStore } from "@/store";
 
 const route = useRoute();
 const { getLoading } = useGlobalStore();
 const { getProducts, fetchProducts } = useProductStore();
-const { addUpToCart } = useCartStore();
 
 watch(
   () => route.query,
