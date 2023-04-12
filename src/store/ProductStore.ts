@@ -15,11 +15,8 @@ const useProductStore = defineStore("product", () => {
 
   // Actions
   const fetchProducts = async (brand?: number, category?: number) => {
-    const { setLoading } = useGlobalStore();
-    setLoading(false);
     const { data } = await new Product().list({ brand, category });
     productItemList.value = data;
-    setLoading(true);
   };
 
   return { getProducts, fetchProducts };

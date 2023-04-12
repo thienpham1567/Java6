@@ -7,16 +7,14 @@ import Product from "@/models/Product";
 import type { ProductItemType } from "@/types/productItem";
 
 const route = useRoute();
-const { getLoading, setLoading } = useGlobalStore();
+const { getLoading } = useGlobalStore();
 const { addUpToCart } = useCartStore();
 const { productId } = route.params;
 const product: Ref<ProductItemType | undefined> = ref({});
 
 const getProductById = async () => {
-  setLoading(true);
   const { data } = await new Product().detail(+productId);
   product.value = data;
-  setLoading(false);
 };
 
 onMounted(getProductById);

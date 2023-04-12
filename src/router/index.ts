@@ -17,8 +17,9 @@ import { home } from "./home";
 import { cart } from "./cart";
 import { account } from "./account";
 import { admin } from "./admin"
+import { checkout } from "./checkout";
 
-const routes: Array<RouteRecordRaw> = [home, product, cart, account, admin];
+const routes: Array<RouteRecordRaw> = [home, product, cart, account, admin, checkout];
 
 // Vue Router
 const router: Router = createRouter({
