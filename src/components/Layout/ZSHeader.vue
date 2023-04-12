@@ -63,7 +63,7 @@ const createCategories = () => {
 
 const goToAdminPage = () => {
   router.push("/admin");
-}
+};
 
 watch(getUser, () => {
   user.value = getUser.value;
@@ -173,26 +173,38 @@ onMounted(fetchData);
     <div v-else>
       <v-menu>
         <template v-slot:activator="{ props }">
-            <div class="d-flex">
-              <p v-bind="props">
-                <p class="font-weight-bold">My Account</p>
-                <span class="mdi mdi-arrow-down-right"></span>
-              </p>
-            </div>
+          <div v-bind="props" class="d-flex">
+            <p class="font-weight-bold">My Account</p>
+            <span class="mdi mdi-arrow-down-right"></span>
+          </div>
         </template>
         <v-list v-if="user.roles?.includes('AD')">
           <v-list-item>
             <v-list-item-title class="mb-2">
               {{ user.emailAddress }}
             </v-list-item-title>
-            <p class="font-weight-bold" @click="goToAdminPage">Admin Dashboard</p>
-            <v-btn color="light-blue-darken-3" class="mt-auto w-100" @click="logout">Logout</v-btn>
+            <p class="font-weight-bold" @click="goToAdminPage">
+              Admin Dashboard
+            </p>
+            <v-btn
+              color="light-blue-darken-3"
+              class="mt-auto w-100"
+              @click="logout"
+            >
+              Logout
+            </v-btn>
           </v-list-item>
         </v-list>
         <v-list v-else>
           <v-list-item>
             <v-list-item-title>{{ user.emailAddress }}</v-list-item-title>
-            <v-btn color="light-blue-darken-3" class="mt-auto w-100" @click="logout">Logout</v-btn>
+            <v-btn
+              color="light-blue-darken-3"
+              class="mt-auto w-100"
+              @click="logout"
+            >
+              Logout
+            </v-btn>
           </v-list-item>
         </v-list>
       </v-menu>
