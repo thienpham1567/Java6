@@ -12,7 +12,8 @@ import { watch } from "vue";
 import LoginRegister from "../Dialog/LoginRegister.vue";
 
 const router = useRouter();
-const { getUser } = useUserStore();
+const { getUser, logout } = useUserStore();
+const { getTotalQuantity, fetchCartItems } = useCartStore();
 let user: Ref<UserType | null> = ref(null);
 const services: Ref<{ [key: string]: string }[]> = ref([
   { title: "Contact Info" },
@@ -24,7 +25,6 @@ const categories: Ref<CategoryType[]> = ref([]);
 let mainCategories: Ref<any> = ref([]);
 const brands: Ref<BrandType[]> = ref([]);
 const loginRegisterDialog: Ref<boolean> = ref(false);
-const { getTotalQuantity, fetchCartItems } = useCartStore();
 
 const closeDialog = () => {
   loginRegisterDialog.value = !loginRegisterDialog.value;
@@ -186,11 +186,13 @@ onMounted(fetchData);
               {{ user.emailAddress }}
             </v-list-item-title>
             <p class="font-weight-bold" @click="goToAdminPage">Admin Dashboard</p>
+            <v-btn color="light-blue-darken-3" class="mt-auto w-100" @click="logout">Logout</v-btn>
           </v-list-item>
         </v-list>
         <v-list v-else>
           <v-list-item>
             <v-list-item-title>{{ user.emailAddress }}</v-list-item-title>
+            <v-btn color="light-blue-darken-3" class="mt-auto w-100" @click="logout">Logout</v-btn>
           </v-list-item>
         </v-list>
       </v-menu>

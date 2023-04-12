@@ -8,7 +8,7 @@ import router from "@/router";
 
 const useUserStore = defineStore("user", () => {
   // State
-  const user: Ref<UserType> = ref({});
+  const user: Ref<UserType | null> = ref(null);
   const userToken: Ref<string> = ref("");
 
   // Getters
@@ -29,6 +29,12 @@ const useUserStore = defineStore("user", () => {
         router.push({ name: "Home" });
       }
     }
+  };
+
+  const logout = () => {
+    localStorage.setItem("token", "");
+    user.value = null;
+    userToken.value = "";
   };
 
   const setToken = (newToken?: string) => {
@@ -54,7 +60,7 @@ const useUserStore = defineStore("user", () => {
       roles: userRoles,
     };
   };
-  return { getUser, getToken, login, setToken, setUser };
+  return { getUser, getToken, login, logout, setToken, setUser };
 });
 
 export default useUserStore;
