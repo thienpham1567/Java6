@@ -1,47 +1,60 @@
 import Account from "@/models/Account";
 import type { UserType } from "@/types/user";
 import { defineStore } from "pinia";
-import type { Ref } from "vue";
-import { ref } from "vue";
+import { ref, type Ref } from "vue";
 import jwt_decode from "jwt-decode";
-import type { User } from "@/types/user";
-
-
-
-
+import { computed } from "vue";
+import router from "@/router";
 
 const useUserStore = defineStore("user", () => {
-  //const user: Ref<UserType> = ref({});
+  // State
+  const user: Ref<UserType> = ref({});
+  const userToken: Ref<string> = ref("");
 
+  // Getters
+  const getUser = computed(() => user);
+  const getToken = computed(() => userToken);
 
-  async function login(email: string, password: string) {
-    const token = await new Account().login({email,password});
-    console.log(token);
-    if (token === null) {
-      alert("Đăng nhập thất bại");
+  // Action
+  const login = async (email: string, password: string) => {
+    const localToken = localStorage.getItem("token");
+    if (localToken) {
+      user.value = decodeToken(localToken);
+      router.push({ name: "Home" });
     } else {
-      alert("Đăng nhập thành công");
-      // const decodedUser = jwt_decode(token) as UserType;
-      // const jsonString = decodedUser.user;
-      // console.log(decodedUser.user)
-      const decodedUser = jwt_decode(token) as UserType;
-      
-      if (decodedUser.user) {
-        const jsonString = JSON.stringify(decodedUser.user);
-        const jsonObject = JSON.parse(jsonString);
-        alert(jsonObject);
-        // Tiếp tục xử lý jsonString
-      } else {
-        // Xử lý khi decodedUser.user là undefined
-        alert('Decoded user object is undefined.');
-        // Hoặc thực hiện một hành động tương ứng khác
+      const token = await new Account().login({ email, password });
+      if (token) {
+        localStorage.setItem("token", token);
+        user.value = decodeToken(token);
+        router.push({ name: "Home" });
       }
-      
     }
-    
-  }
+  };
 
-  return { login }
+  const setToken = (newToken?: string) => {
+    userToken.value = newToken;
+  };
+
+  const setUser = (newUser?: UserType) => {
+    user.value = user;
+  };
+
+  const decodeToken = (token: string): UserType => {
+    userToken.value = token;
+    const decodedUser = jwt_decode(token);
+    const userRoles: string[] = decodedUser.user.roles?.map(
+      role => role.authority
+    );
+    const fullName = decodedUser.user.fullName.split(" ");
+    return {
+      emailAddress: decodedUser.user.email,
+      firstName: fullName[0],
+      lastName: fullName[1],
+      phoneNumber: decodedUser.user.phoneNumber,
+      roles: userRoles,
+    };
+  };
+  return { getUser, getToken, login, setToken, setUser };
 });
 
 export default useUserStore;

@@ -5,11 +5,15 @@ import { useRouter } from "vue-router";
 import Brand from "@/models/Brand";
 import Category from "@/models/Category";
 import type { BrandType } from "@/types/brand";
+import type { UserType } from "@/types/user";
 import type { CategoryType } from "@/types/category";
-import LoginRegister from "@/components/Dialog/LoginRegister.vue";
-import { useCartStore } from "@/store";
+import { useCartStore, useUserStore } from "@/store";
+import { watch } from "vue";
+import LoginRegister from "../Dialog/LoginRegister.vue";
 
 const router = useRouter();
+const { getUser } = useUserStore();
+let user: Ref<UserType | null> = ref(null);
 const services: Ref<{ [key: string]: string }[]> = ref([
   { title: "Contact Info" },
   { title: "FAQ" },
@@ -17,7 +21,7 @@ const services: Ref<{ [key: string]: string }[]> = ref([
 ]);
 
 const categories: Ref<CategoryType[]> = ref([]);
-let mainCategories:Ref<any> = ref([]);
+let mainCategories: Ref<any> = ref([]);
 const brands: Ref<BrandType[]> = ref([]);
 const loginRegisterDialog: Ref<boolean> = ref(false);
 const { getTotalQuantity, fetchCartItems } = useCartStore();
@@ -45,11 +49,25 @@ const fetchData = async () => {
 };
 
 const createCategories = () => {
-  mainCategories.value = [categories.value[0],categories.value[1],categories.value[2]];
+  mainCategories.value = [
+    categories.value[0],
+    categories.value[1],
+    categories.value[2],
+  ];
   for (const category1 of mainCategories.value) {
-    category1.children = categories.value.filter(category2 => category2.parentCategory?.categoryId === category1.categoryId);
+    category1.children = categories.value.filter(
+      category2 => category2.parentCategory?.categoryId === category1.categoryId
+    );
   }
+};
+
+const goToAdminPage = () => {
+  router.push("/admin");
 }
+
+watch(getUser, () => {
+  user.value = getUser.value;
+});
 
 onMounted(fetchData);
 </script>
@@ -101,7 +119,8 @@ onMounted(fetchData);
           variant="tonal"
           @click="goToCart"
         >
-          My Cart ({{ getTotalQuantity }})
+          My Cart
+          <p class="text-h5 font-weight-bold">({{ getTotalQuantity }})</p>
         </v-btn>
       </div>
     </div>
@@ -145,11 +164,36 @@ onMounted(fetchData);
         </v-list>
       </v-menu>
     </div>
-    <v-dialog v-model="loginRegisterDialog" width="auto">
+    <v-dialog v-model="loginRegisterDialog" width="auto" v-if="user === null">
       <template v-slot:activator="{ props }">
         <p v-bind="props">Sign In / Register</p>
       </template>
       <LoginRegister @close-dialog="closeDialog" />
     </v-dialog>
+    <div v-else>
+      <v-menu>
+        <template v-slot:activator="{ props }">
+            <div class="d-flex">
+              <p v-bind="props">
+                <p class="font-weight-bold">My Account</p>
+                <span class="mdi mdi-arrow-down-right"></span>
+              </p>
+            </div>
+        </template>
+        <v-list v-if="user.roles?.includes('AD')">
+          <v-list-item>
+            <v-list-item-title class="mb-2">
+              {{ user.emailAddress }}
+            </v-list-item-title>
+            <p class="font-weight-bold" @click="goToAdminPage">Admin Dashboard</p>
+          </v-list-item>
+        </v-list>
+        <v-list v-else>
+          <v-list-item>
+            <v-list-item-title>{{ user.emailAddress }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
   </nav>
 </template>

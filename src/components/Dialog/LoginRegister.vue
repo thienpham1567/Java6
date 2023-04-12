@@ -2,13 +2,16 @@
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const emit = defineEmits(["close-dialog"]);
 
 const signInZapsoon = () => {
   router.push("/account/login");
+  emit('close-dialog');
 }
 
 const createAccountZapsoon = () => {
   router.push("/account/register");
+  emit('close-dialog');
 }
 
 const signInGoogle = () => {

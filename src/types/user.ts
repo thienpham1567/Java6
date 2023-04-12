@@ -1,16 +1,11 @@
 export interface UserType {
-  sub?: string;
-  iat?: number;
-  exp?: number;
-  user?: {
-    email?: string;
-    role?: { authority?: string }[];
-  };
+  emailAddress?: string;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  roles?: string[];
 }
-export interface User {
-  email?: string;
-  role?: { authority?: string }[];
-}
+
 export interface LoginParams {
   email: string;
   password: string;

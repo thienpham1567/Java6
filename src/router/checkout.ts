@@ -1,4 +1,5 @@
 import Layout from "@/layout/index.vue";
+import { useUserStore } from "@/store";
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 
 export const checkout = {
@@ -16,7 +17,14 @@ export const checkout = {
         _to: RouteLocationNormalized,
         _from: RouteLocationNormalized,
         next: NavigationGuardNext
-      ) => {},
+      ) => {
+        const userStore = useUserStore();
+        if (_to.meta.requiresGuest && !userStore.getToken.value) {
+          next({ name: "Login" });
+        } else {
+          next();
+        }
+      },
     },
   ],
 };
