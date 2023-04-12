@@ -10,24 +10,14 @@ export interface CartItemProps {
   cartItem: CartItemType;
 }
 
-export interface CartItemEmits {
-  (event: "subtract-length", cartItemId: number): void;
-}
-
 onMounted(async () => {
   product.value = (await new Product().detail(cartItem?.productItemId!)).data!;
 });
 
 const { addUpToCart, removeItemFromCart } = useCartStore();
 const { cartItem } = defineProps<CartItemProps>();
-const emit = defineEmits<CartItemEmits>();
 const product: Ref<ProductItemType> = ref({});
-const quantity: Ref<number> = ref(1);
 
-const removeItem = (cartItemId: number) => {
-  removeItemFromCart(cartItemId);
-  emit("subtract-length", cartItemId);
-};
 </script>
 
 <template>
@@ -49,7 +39,7 @@ const removeItem = (cartItemId: number) => {
         prepend-icon="mdi-trash-can-outline"
         color="light-blue-darken-3"
         class="mt-10"
-        @click="removeItem(cartItem.cartItemId!)"
+        @click="removeItemFromCart(cartItem.cartItemId!)"
       >
         Remove
       </v-btn>

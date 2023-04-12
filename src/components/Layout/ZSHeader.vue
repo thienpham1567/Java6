@@ -20,7 +20,7 @@ const categories: Ref<CategoryType[]> = ref([]);
 let mainCategories:Ref<any> = ref([]);
 const brands: Ref<BrandType[]> = ref([]);
 const loginRegisterDialog: Ref<boolean> = ref(false);
-const { getTotalQuantity } = useCartStore();
+const { getTotalQuantity, fetchCartItems } = useCartStore();
 
 const closeDialog = () => {
   loginRegisterDialog.value = !loginRegisterDialog.value;
@@ -40,6 +40,7 @@ const goToCart = () => {
 const fetchData = async () => {
   categories.value = (await new Category().list()).data;
   brands.value = (await new Brand().list()).data;
+  fetchCartItems();
   createCategories();
 };
 
