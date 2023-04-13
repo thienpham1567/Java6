@@ -9,13 +9,21 @@ export const admin = {
   meta: {
     requiresAuth: true
   },
+  children: [
+    {
+      path: 'brands',
+      name:"BrandAdmin",
+      component: () => import("@/components/Admin/Brand/BrandTable.vue"),
+    },
+  ]
+  ,
   beforeEnter: (
     _to: RouteLocationNormalized,
     _from: RouteLocationNormalized,
     next: NavigationGuardNext
   ) => {
     const userStore = useUserStore();
-    if (_to.meta.requiresAuth && userStore.getToken.value && userStore.getUser.value.roles?.some(role => role === "AD")) {
+    if (_to.meta.requiresAuth && userStore.getToken.value && userStore.getUser.value?.roles?.some(role => role === "AD")) {
       next();
     } else {
       next({name: "Home"});

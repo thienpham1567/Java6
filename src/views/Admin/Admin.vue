@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import type { Column } from "@/components/Core/CoreTable.vue";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 let drawer = ref(true);
 let rail = ref(true);
 
+const goToBrandsAdmin = () => {
+  router.push({ name: "BrandAdmin" });
+};
 </script>
 <template>
   <v-card>
@@ -51,6 +57,7 @@ let rail = ref(true);
             prepend-icon="mdi-alpha-b-box"
             title="Brands"
             value="brands"
+            @click="goToBrandsAdmin"
           ></v-list-item>
           <v-list-item
             prepend-icon="mdi-shape-plus"
@@ -60,7 +67,7 @@ let rail = ref(true);
         </v-list>
       </v-navigation-drawer>
       <v-main>
-        <h1>asfasf</h1>
+        <router-view />
       </v-main>
     </v-layout>
   </v-card>
