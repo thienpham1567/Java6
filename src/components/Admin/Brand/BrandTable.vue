@@ -4,7 +4,7 @@ import type { Column } from '@/components/Core/CoreTable.vue';
 import { useBrandStore } from "@/store"
 import { onMounted } from 'vue';
 
-const { getBrands, fetchBrands } = useBrandStore();
+const { getBrands } = useBrandStore();
 const columns: Column[] = [
   {
     label: "ID",
@@ -16,7 +16,6 @@ const columns: Column[] = [
   }
 ]
 
-onMounted(fetchBrands);
 </script>
 <template>
   <CoreTable :columns="columns" :rows="getBrands"/>

@@ -7,13 +7,14 @@ import Category from "@/models/Category";
 import type { BrandType } from "@/types/brand";
 import type { UserType } from "@/types/user";
 import type { CategoryType } from "@/types/category";
-import { useCartStore, useUserStore } from "@/store";
+import { useBrandStore, useCartStore, useUserStore } from "@/store";
 import { watch } from "vue";
 import LoginRegister from "../Dialog/LoginRegister.vue";
 
 const router = useRouter();
 const { getUser, logout } = useUserStore();
 const { getTotalQuantity, fetchCartItems } = useCartStore();
+const { getBrands, fetchBrands } = useBrandStore();
 let user: Ref<UserType | null> = ref(null);
 const services: Ref<{ [key: string]: string }[]> = ref([
   { title: "Contact Info" },
@@ -23,7 +24,6 @@ const services: Ref<{ [key: string]: string }[]> = ref([
 
 const categories: Ref<CategoryType[]> = ref([]);
 let mainCategories: Ref<any> = ref([]);
-const brands: Ref<BrandType[]> = ref([]);
 const loginRegisterDialog: Ref<boolean> = ref(false);
 
 const closeDialog = () => {
@@ -43,7 +43,7 @@ const goToCart = () => {
 
 const fetchData = async () => {
   categories.value = (await new Category().list()).data;
-  brands.value = (await new Brand().list()).data;
+  fetchBrands();
   fetchCartItems();
   createCategories();
 };
@@ -154,7 +154,7 @@ onMounted(fetchData);
         </template>
         <v-list>
           <v-list-item
-            v-for="brand in brands"
+            v-for="brand in getBrands"
             :key="brand.brandId"
             :value="brand"
             @click="gotoProduct(brand.brandId, undefined)"
