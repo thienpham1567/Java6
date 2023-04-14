@@ -2,7 +2,6 @@
 import CoreTable from '@/components/Core/CoreTable.vue';
 import type { Column } from '@/components/Core/CoreTable.vue';
 import { useBrandStore } from "@/store"
-import { onMounted } from 'vue';
 
 const { getBrands } = useBrandStore();
 const columns: Column[] = [

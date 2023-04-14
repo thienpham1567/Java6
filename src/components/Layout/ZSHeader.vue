@@ -2,12 +2,8 @@
 import { onMounted } from "vue";
 import { ref, type Ref } from "vue";
 import { useRouter } from "vue-router";
-import Brand from "@/models/Brand";
-import Category from "@/models/Category";
-import type { BrandType } from "@/types/brand";
 import type { UserType } from "@/types/user";
-import type { CategoryType } from "@/types/category";
-import { useBrandStore, useCartStore, useUserStore } from "@/store";
+import { useBrandStore, useCartStore, useUserStore, useCategoryStore } from "@/store";
 import { watch } from "vue";
 import LoginRegister from "../Dialog/LoginRegister.vue";
 
@@ -15,16 +11,17 @@ const router = useRouter();
 const { getUser, logout } = useUserStore();
 const { getTotalQuantity, fetchCartItems } = useCartStore();
 const { getBrands, fetchBrands } = useBrandStore();
+const { getCategories, fetchCategories } = useCategoryStore();
 let user: Ref<UserType | null> = ref(null);
+let mainCategories: Ref<any> = ref([]);
+const loginRegisterDialog: Ref<boolean> = ref(false);
+
 const services: Ref<{ [key: string]: string }[]> = ref([
   { title: "Contact Info" },
   { title: "FAQ" },
   { title: "Give Us Feedback" },
 ]);
 
-const categories: Ref<CategoryType[]> = ref([]);
-let mainCategories: Ref<any> = ref([]);
-const loginRegisterDialog: Ref<boolean> = ref(false);
 
 const closeDialog = () => {
   loginRegisterDialog.value = !loginRegisterDialog.value;
@@ -42,20 +39,22 @@ const goToCart = () => {
 };
 
 const fetchData = async () => {
-  categories.value = (await new Category().list()).data;
+  await fetchCategories();
   fetchBrands();
   fetchCartItems();
   createCategories();
 };
 
 const createCategories = () => {
+  console.log(getCategories.value);
+
   mainCategories.value = [
-    categories.value[0],
-    categories.value[1],
-    categories.value[2],
+    getCategories.value[0],
+    getCategories.value[1],
+    getCategories.value[2],
   ];
   for (const category1 of mainCategories.value) {
-    category1.children = categories.value.filter(
+    category1.children = getCategories.value.filter(
       category2 => category2.parentCategory?.categoryId === category1.categoryId
     );
   }

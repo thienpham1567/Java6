@@ -7,8 +7,12 @@ const router = useRouter();
 let drawer = ref(true);
 let rail = ref(true);
 
-const goToBrandsAdmin = () => {
+const goToBrandAdmin = () => {
   router.push({ name: "BrandAdmin" });
+};
+
+const goToCategoryAdmin = () => {
+  router.push({ name: "CategoryAdmin" });
 };
 </script>
 <template>
@@ -57,12 +61,13 @@ const goToBrandsAdmin = () => {
             prepend-icon="mdi-alpha-b-box"
             title="Brands"
             value="brands"
-            @click="goToBrandsAdmin"
+            @click="goToBrandAdmin"
           ></v-list-item>
           <v-list-item
             prepend-icon="mdi-shape-plus"
             title="Categories"
             value="categories"
+            @click="goToCategoryAdmin"
           ></v-list-item>
         </v-list>
       </v-navigation-drawer>

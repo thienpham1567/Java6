@@ -13,5 +13,6 @@ import useProductStore from './ProductStore';
 import useCartStore from './CartStore'
 import useUserStore from './UserStore';
 import useBrandStore from './BrandStore';
+import useCategoryStore from './CategoryStore';
 
-export { useGlobalStore, useProductStore, useCartStore, useUserStore, useBrandStore };
+export { useGlobalStore, useProductStore, useCartStore, useUserStore, useBrandStore, useCategoryStore };

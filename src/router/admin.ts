@@ -15,6 +15,11 @@ export const admin = {
       name:"BrandAdmin",
       component: () => import("@/components/Admin/Brand/BrandTable.vue"),
     },
+    {
+      path: 'categories',
+      name:"CategoryAdmin",
+      component: () => import("@/components/Admin/Category/CategoryTable.vue"),
+    },
   ]
   ,
   beforeEnter: (

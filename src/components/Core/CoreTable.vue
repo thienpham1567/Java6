@@ -16,6 +16,7 @@
 export interface Column {
   label: string;
   field: string;
+  formatFn?: (value: any) => void;
 }
 
 export interface SearchOptions {

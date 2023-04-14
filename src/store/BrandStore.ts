@@ -14,8 +14,6 @@ const useBrandStore = defineStore("brand", () => {
   // Action
   const fetchBrands = async () => {
     brands.value = (await new Brand().list()).data;
-    console.log(brands.value);
-
   }
 
   return { getBrands , fetchBrands};
