@@ -1,4 +1,4 @@
-import { useUserStore } from '@/store';
+import { useAccountStore } from '@/store';
 import Admin from "@/views/Admin/Admin.vue";
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 
@@ -27,8 +27,8 @@ export const admin = {
     _from: RouteLocationNormalized,
     next: NavigationGuardNext
   ) => {
-    const userStore = useUserStore();
-    if (_to.meta.requiresAuth && userStore.getToken.value && userStore.getUser.value?.roles?.some(role => role === "AD")) {
+    const { getToken, getUser } = useAccountStore();
+    if (_to.meta.requiresAuth && getToken.value && getUser.value?.roles?.some(role => role === "AD")) {
       next();
     } else {
       next({name: "Home"});

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useUserStore } from "@/store";
+import { useAccountStore } from "@/store";
 import { ref } from "vue";
 
 // Define reactive variables
 const email = ref("");
 const password = ref("");
 
-const userStore = useUserStore();
+const { login } = useAccountStore();
 
 const submit = () => {
-  userStore.login(email.value, password.value);
+  login(email.value, password.value);
 };
 </script>
 

@@ -1,15 +1,17 @@
 <template>
-  <vue-good-table
-    :columns="props.columns"
-    :rows="props.rows"
-    :search-options="props.search"
-    :sort-options="{
-      enable: props.sort,
-    }"
-    v-on:row-click="onRowClick"
-    :fixed-header="true"
-    compactMode
-  ></vue-good-table>
+  <div class="mb-3">
+    <vue-good-table
+      :columns="props.columns"
+      :rows="props.rows"
+      :search-options="props.search"
+      :sort-options="{
+        enable: props.sort,
+      }"
+      v-on:row-click="onRowClick"
+      :fixed-header="true"
+      compactMode
+    ></vue-good-table>
+  </div>
 </template>
 
 <script setup lang="ts">

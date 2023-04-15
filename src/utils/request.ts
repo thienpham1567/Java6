@@ -21,14 +21,14 @@ export abstract class HTTPBaseService {
     const { getToken, setToken } = useUserStore();
 
     this.instance.interceptors.request.use(config => {
-      config.headers.Authorization = `Bearer ${getToken.value}`
+      config.headers.Authorization = `Bearer ${getToken?.value}`
       return config;
     })
 
     this.instance.interceptors.response.use(response => {
       return response;
     }, error => {
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         setToken(undefined);
       }
       throw error;

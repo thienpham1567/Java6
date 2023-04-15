@@ -3,12 +3,12 @@ import { onMounted } from "vue";
 import { ref, type Ref } from "vue";
 import { useRouter } from "vue-router";
 import type { UserType } from "@/types/user";
-import { useBrandStore, useCartStore, useUserStore, useCategoryStore } from "@/store";
+import { useBrandStore, useCartStore, useCategoryStore, useAccountStore } from "@/store";
 import { watch } from "vue";
 import LoginRegister from "../Dialog/LoginRegister.vue";
 
 const router = useRouter();
-const { getUser, logout } = useUserStore();
+const { getUser, logout } = useAccountStore();
 const { getTotalQuantity, fetchCartItems } = useCartStore();
 const { getBrands, fetchBrands } = useBrandStore();
 const { getCategories, fetchCategories } = useCategoryStore();
@@ -46,8 +46,6 @@ const fetchData = async () => {
 };
 
 const createCategories = () => {
-  console.log(getCategories.value);
-
   mainCategories.value = [
     getCategories.value[0],
     getCategories.value[1],
