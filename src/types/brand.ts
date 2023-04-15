@@ -1,6 +1,6 @@
 export interface BrandType {
   brandId?: number;
-  name: string;
+  name?: string;
 }
 
 export interface CreationParams{
