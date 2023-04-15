@@ -28,8 +28,8 @@ class Brand extends HTTPBaseService {
     return await this.instance.put(`/brands/${id}`, params);
   }
 
-  delete(id: number): void {
-    this.instance.delete(`/brands/${id}`);
+  async delete(id: number): Promise<void> {
+    await this.instance.delete(`/brands/${id}`);
   }
 
   deleteAll(ids: number[]): void {

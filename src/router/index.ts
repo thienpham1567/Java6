@@ -37,9 +37,9 @@ router.beforeEach(
     _from: RouteLocationNormalized,
     next: NavigationGuardNext
   ) => {
-    const globalStore = useGlobalStore();
+    const { setLoading } = useGlobalStore();
     // Show Loading
-    globalStore.setLoading(true);
+    setLoading(true);
     await nextTick();
 
     next();
@@ -48,9 +48,9 @@ router.beforeEach(
 
 // Global After Hooks
 router.afterEach(() => {
-  const globalStore = useGlobalStore();
+  const { setLoading } = useGlobalStore();
   // Hide Loading
-  globalStore.setLoading(false);
+  setLoading(false);
 });
 
 export default router;

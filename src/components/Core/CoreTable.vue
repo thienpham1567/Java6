@@ -1,38 +1,33 @@
 <template>
   <div class="mb-3">
-    <vue-good-table
-      :columns="props.columns"
-      :rows="props.rows"
-      :search-options="props.search"
-      :sort-options="{
-        enable: props.sort,
-      }"
-      v-on:row-click="onRowClick"
-      :fixed-header="true"
-      compactMode
-    ></vue-good-table>
+    <EasyDataTable
+      :headers="props.headers"
+      :items="props.items"
+      @click-row="onRowClick"
+      theme-color="#0277bd"
+      border-cell
+      buttons-pagination
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-export interface Column {
-  label: string;
-  field: string;
-  formatFn?: (value: any) => void;
+import type { Header, Item } from 'vue3-easy-data-table';
+
+export interface CoreTableProps {
+  headers?: Header[];
+  items?: any;
 }
 
-export interface SearchOptions {
-  enable: boolean;
-  placeholder: string;
-  searchFn: () => void;
-}
-export interface CoreTableProps {
-  columns?: Column[];
-  rows?: any;
-  onRowClick?: () => void;
-  search?: SearchOptions;
-  sort?: boolean;
+export type ClickRowArgument = Item & {
+  isSelected?: boolean;
+  indexInCurrentPage?: number;
+};
+
+const onRowClick = (item: ClickRowArgument) => {
+  emits('on-row-click', item);
 }
 
 const props = defineProps<CoreTableProps>();
+const emits = defineEmits(["on-row-click"]);
 </script>

@@ -1,24 +1,26 @@
-import { watch } from 'vue';
 import { defineStore } from "pinia";
+import { computed } from "vue";
+import { ref, type Ref } from "vue";
 
-interface GlobalState {
-  loading: boolean;
-}
+const useGlobalStore = defineStore("global", () => {
+  // State
+  const loading: Ref<boolean> = ref(true);
+  const showPopup: Ref<boolean> = ref(false);
 
-export default defineStore("global", {
-  state: (): GlobalState => ({
-    loading: true,
-  }),
+  // Getters
+  const getLoading = computed(() => loading);
+  const getShowPopup = computed(() => showPopup);
 
-  getters: {
-    getLoading(): boolean {
-      return this.loading;
-    },
-  },
+  // Action
+  const setLoading = (display: boolean): void => {
+    loading.value = display;
+  }
 
-  actions: {
-    setLoading(display: boolean): void {
-      this.loading = display;
-    },
-  },
+  const setShowPopup = (display: boolean): void => {
+    showPopup.value = display;
+  }
+
+  return { getLoading, getShowPopup, setLoading, setShowPopup };
 });
+
+export default useGlobalStore;

@@ -11,7 +11,7 @@ export type UpdateParams = Omit<BrandType, "id">;
 
 export interface CreationResponse {
   status: boolean;
-  data: { id: number };
+  data: BrandType;
   message?: string;
 }
 
