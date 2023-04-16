@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import CorePopup from "@/components/Core/CorePopup.vue";
 import CoreTable from "@/components/Core/CoreTable.vue";
-import type { Header , Item} from 'vue3-easy-data-table';
+import type { Header, Item } from "vue3-easy-data-table";
 import { useBrandStore, useGlobalStore } from "@/store";
 import type { BrandType } from "@/types/brand";
-import type { Ref } from "vue";
-import { ref } from "vue";
 
 export type ClickRowArgument = Item & {
   isSelected?: boolean;
@@ -24,14 +22,12 @@ const headers: Header[] = [
 ];
 
 const { setShowPopup } = useGlobalStore();
-const { getBrands, addNewBrand, updateBrand, deleteBrand } = useBrandStore();
-const brand: Ref<BrandType> = ref({});
+const { getBrand, getBrands, addBrand, updateBrand, deleteBrand, setBrand } = useBrandStore();
 
 const onRowTableClick = (item: ClickRowArgument) => {
-  brand.value = item as BrandType;
+  setBrand(item as BrandType);
   setShowPopup(true);
 };
-
 </script>
 <template>
   <CoreTable
@@ -41,15 +37,16 @@ const onRowTableClick = (item: ClickRowArgument) => {
   />
 
   <CorePopup
-    :model-id="brand.brandId"
+    :model-id="getBrand.brandId"
     model-name="Brand"
-    @add-model="addNewBrand(brand)"
-    @update-model="updateBrand(brand.brandId!, brand)"
-    @delete-model="deleteBrand(brand.brandId!)"
+    @add-model="addBrand({ name: getBrand.name! })"
+    @update-model="updateBrand(getBrand.brandId!, getBrand)"
+    @delete-model="deleteBrand(getBrand.brandId!)"
   >
-    <!-- <p class="text-h5 mb-5" v-if="brand?.brandId === undefined">Add Brand</p> -->
-    <p class="text-h5 mb-5" v-if="brand.brandId !== undefined">Edit Brand</p>
+    <p class="text-h5 mb-5" v-if="getBrand.brandId !== undefined">
+      Edit {{ getBrand.name }}
+    </p>
     <p class="text-h5 mb-5" v-else>Add Brand</p>
-    <v-text-field v-model="brand.name" label="Brand name"></v-text-field>
+    <v-text-field v-model="getBrand.name" label="Brand name"></v-text-field>
   </CorePopup>
 </template>

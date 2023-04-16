@@ -29,7 +29,7 @@ class Product extends HTTPBaseService {
     return await this.instance.put(`/products/${id}`, params);
   }
 
-  delete(id: number): void {
+  async delete(id: number): Promise<void> {
     this.instance.delete(`/products/${id}`);
   }
 

@@ -1,18 +1,28 @@
 <template>
   <div class="mb-3">
     <EasyDataTable
-      :headers="props.headers"
-      :items="props.items"
+      :headers="headers"
+      :items="items"
       @click-row="onRowClick"
       theme-color="#0277bd"
       border-cell
       buttons-pagination
-    />
+    >
+    <template #item-imageUrl="item">
+        <v-img
+          class="bg-white"
+          width="200"
+          aspect-ratio="16/9"
+          :src="item.imageUrl.split('|')[0]"
+          cover
+        ></v-img>
+      </template>
+    </EasyDataTable>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Header, Item } from 'vue3-easy-data-table';
+import type { Header, Item } from "vue3-easy-data-table";
 
 export interface CoreTableProps {
   headers?: Header[];
@@ -25,9 +35,9 @@ export type ClickRowArgument = Item & {
 };
 
 const onRowClick = (item: ClickRowArgument) => {
-  emits('on-row-click', item);
-}
+  emits("on-row-click", item);
+};
 
-const props = defineProps<CoreTableProps>();
+const { headers, items } = defineProps<CoreTableProps>();
 const emits = defineEmits(["on-row-click"]);
 </script>

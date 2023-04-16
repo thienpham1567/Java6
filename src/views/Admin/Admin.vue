@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Column } from "@/components/Core/CoreTable.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -13,6 +12,18 @@ const goToBrandAdmin = () => {
 
 const goToCategoryAdmin = () => {
   router.push({ name: "CategoryAdmin" });
+};
+
+const goToProductAdmin = () => {
+  router.push({ name: "ProductAdmin" });
+};
+
+const goToOrderAdmin = () => {
+  router.push({ name: "OrderAdmin" });
+};
+
+const goToUserAdmin = () => {
+  router.push({ name: "UserAdmin" });
 };
 </script>
 <template>
@@ -45,16 +56,19 @@ const goToCategoryAdmin = () => {
           prepend-icon="mdi-truck-alert"
           title="Orders"
           value="orders"
+          @click="goToOrderAdmin"
         ></v-list-item>
         <v-list-item
           prepend-icon="mdi-store-alert"
           title="Products"
           value="products"
+          @click="goToProductAdmin"
         ></v-list-item>
         <v-list-item
           prepend-icon="mdi-account-group"
           title="Users"
           value="users"
+          @click="goToUserAdmin"
         ></v-list-item>
         <v-list-item
           prepend-icon="mdi-alpha-b-box"

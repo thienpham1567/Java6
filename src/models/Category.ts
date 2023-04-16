@@ -28,11 +28,11 @@ class Category extends HTTPBaseService {
     return await this.instance.put(`/categories/${id}`, params);
   }
 
-  delete(id: number): void {
+  async delete(id: number): Promise<void> {
     this.instance.delete(`/categories/${id}`);
   }
 
-  deleteAll(ids: number[]): void {
+  async deleteAll(ids: number[]): Promise<void> {
     this.instance.delete(`/categories/${ids.join(",")}`);
   }
 }

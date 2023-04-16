@@ -32,7 +32,7 @@ const useAccountStore = defineStore("account", () => {
   };
 
   const logout = () => {
-    localStorage.setItem("token", "");
+    localStorage.removeItem("token");
     user.value = null;
     userToken.value = "";
   };

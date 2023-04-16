@@ -32,7 +32,7 @@ class Brand extends HTTPBaseService {
     await this.instance.delete(`/brands/${id}`);
   }
 
-  deleteAll(ids: number[]): void {
+  async deleteAll(ids: number[]): Promise<void> {
     this.instance.delete(`/brands/${ids.join(",")}`);
   }
 }

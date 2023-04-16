@@ -1,28 +1,31 @@
-<script setup lang='ts'>
-import CoreTable from '@/components/Core/CoreTable.vue';
-import type { Column } from '@/components/Core/CoreTable.vue';
-import { useCategoryStore } from "@/store"
+<script setup lang="ts">
+import CoreTable from "@/components/Core/CoreTable.vue";
+import { useCategoryStore } from "@/store";
+import type { Header } from "vue3-easy-data-table";
 
-const { getCategories } = useCategoryStore();
-const columns: Column[] = [
+const {
+  getCategory,
+  getCategories,
+  addCategory,
+  updateCategory,
+  deleteCategory,
+  setCategory,
+} = useCategoryStore();
+const headers: Header[] = [
   {
-    label: "ID",
-    field: "categoryId"
+    text: "ID",
+    value: "categoryId",
   },
   {
-    label: "Parent Category",
-    field: "parentCategory",
-    formatFn: function(value){
-      return getCategories.value.find(category => category.categoryId === value?.categoryId)?.name;
-    }
+    text: "PARENT CATEGORY",
+    value: "parentCategory.name",
   },
   {
-    label: "Name",
-    field: "name"
-  }
-]
-
+    text: "NAME",
+    value: "name",
+  },
+];
 </script>
 <template>
-  <CoreTable :columns="columns" :rows="getCategories"/>
+  <CoreTable :headers="headers" :items="getCategories"></CoreTable>
 </template>
