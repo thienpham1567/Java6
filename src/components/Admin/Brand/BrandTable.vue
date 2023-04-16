@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import CorePopup from "@/components/Core/CorePopup.vue";
-import CoreTable from "@/components/Core/CoreTable.vue";
+import CoreTable, { type ClickRowArgument } from "@/components/Core/CoreTable.vue";
 import type { Header, Item } from "vue3-easy-data-table";
 import { useBrandStore, useGlobalStore } from "@/store";
 import type { BrandType } from "@/types/brand";
-
-export type ClickRowArgument = Item & {
-  isSelected?: boolean;
-  indexInCurrentPage?: number;
-};
 
 const headers: Header[] = [
   {

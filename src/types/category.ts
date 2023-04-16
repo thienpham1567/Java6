@@ -6,7 +6,7 @@ export interface CategoryType {
 
 export interface CreationParams {
   name?: string;
-  parentCategory?: number;
+  parentCategoryId?: number;
 }
 
 export type UpdateParams = Omit<CategoryType, "id">;

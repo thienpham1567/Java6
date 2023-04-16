@@ -1,5 +1,9 @@
 import Category from "@/models/Category";
-import type { CategoryType, CreationParams, UpdateParams } from "@/types/category";
+import type {
+  CategoryType,
+  CreationParams,
+  UpdateParams,
+} from "@/types/category";
 import { defineStore } from "pinia";
 import { ref, type Ref } from "vue";
 import { computed } from "vue";
@@ -12,11 +16,12 @@ const useCategoryStore = defineStore("category", () => {
   // Getters
   const getCategories = computed(() => categories);
   const getCategory = computed(() => category);
+  const getMainCategories = computed(() => categories.value.filter(category => category.parentCategory?.name === ""));
 
   // Action
   const fetchCategories = async () => {
     categories.value = (await new Category().list()).data;
-  }
+  };
 
   const addCategory = async (category: CreationParams) => {
     const { data } = await new Category().create(category);
@@ -37,9 +42,18 @@ const useCategoryStore = defineStore("category", () => {
 
   const setCategory = (newCategory: CategoryType) => {
     category.value = newCategory;
-  }
+  };
 
-  return { getCategory, getCategories, fetchCategories, addCategory, updateCategory, deleteCategory, setCategory};
+  return {
+    getCategory,
+    getCategories,
+    getMainCategories,
+    fetchCategories,
+    addCategory,
+    updateCategory,
+    deleteCategory,
+    setCategory,
+  };
 });
 
 export default useCategoryStore;

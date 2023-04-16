@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useGlobalStore } from "@/store";
-import { ref } from "vue";
 
 export interface CorePopupProps {
   modelId?: number | string;

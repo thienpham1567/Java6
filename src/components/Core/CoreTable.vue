@@ -8,15 +8,18 @@
       border-cell
       buttons-pagination
     >
-    <template #item-imageUrl="item">
+      <!-- Custom value column -->
+      <!-- Product -->
+      <template #item-imageUrl="{ imageUrl }">
         <v-img
           class="bg-white"
           width="200"
           aspect-ratio="16/9"
-          :src="item.imageUrl.split('|')[0]"
+          :src="imageUrl.split('|')[0]"
           cover
         ></v-img>
       </template>
+      <template #item-price="{ price }">${{ price.toFixed(2) }}</template>
     </EasyDataTable>
   </div>
 </template>
