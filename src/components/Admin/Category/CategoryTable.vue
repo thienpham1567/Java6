@@ -12,8 +12,6 @@ const headers: Header[] = [
   { text: "NAME", value: "name" },
 ];
 
-const selectedParentCategory: Ref<CategoryType> = ref({});
-
 const {
   getCategory,
   getCategories,
@@ -28,13 +26,9 @@ const { setShowPopup } = useGlobalStore();
 const onRowTableClick = (item: ClickRowArgument) => {
   const category = item as CategoryType;
   setCategory(category);
-  selectedParentCategory.value = category.parentCategory!;
   setShowPopup(true);
 };
 
-const updateSelectedParentCategory = (category) => {
-  console.log(category);
-}
 </script>
 <template>
   <CoreTable :headers="headers" :items="getCategories"  @on-row-click="onRowTableClick"></CoreTable>
@@ -44,7 +38,7 @@ const updateSelectedParentCategory = (category) => {
     @add-model="
       addCategory({
         name: getCategory.name!,
-        parentCategoryId: selectedParentCategory.categoryId,
+        parentCategoryId: getCategory.parentCategory?.categoryId,
       })
     "
     @update-model="updateCategory(getCategory.categoryId!, getCategory)"
@@ -59,11 +53,11 @@ const updateSelectedParentCategory = (category) => {
       label="Category name"
     ></v-text-field>
     <v-select
-      @update:model-value="updateSelectedParentCategory"
-      v-model="selectedParentCategory"
+      v-model="getCategory.parentCategory"
       label="Select Parent Category"
       :items="getMainCategories"
       item-title="name"
+      return-object
       chips
     ></v-select>
   </CorePopup>
