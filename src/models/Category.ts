@@ -13,7 +13,7 @@ class Category extends HTTPBaseService {
   }
 
   async list(): Promise<ListResponse> {
-    return (await this.instance.get("/categories"));
+    return await this.instance.get("/categories");
   }
 
   async detail(id: number): Promise<CategoryResponse> {
@@ -29,7 +29,7 @@ class Category extends HTTPBaseService {
   }
 
   async delete(id: number): Promise<void> {
-    this.instance.delete(`/categories/${id}`);
+    await this.instance.delete(`/categories/${id}`);
   }
 
   async deleteAll(ids: number[]): Promise<void> {

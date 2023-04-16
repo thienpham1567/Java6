@@ -20,7 +20,8 @@ const useCategoryStore = defineStore("category", () => {
 
   // Action
   const fetchCategories = async () => {
-    categories.value = (await new Category().list()).data;
+    const { data } = await new Category().list();
+    setCategories(data);
   };
 
   const addCategory = async (category: CreationParams) => {
@@ -40,9 +41,9 @@ const useCategoryStore = defineStore("category", () => {
     fetchCategories();
   };
 
-  const setCategory = (newCategory: CategoryType) => {
-    category.value = newCategory;
-  };
+  const setCategory = (newCategory: CategoryType) => category.value = newCategory;
+
+  const setCategories = (newCategories: CategoryType[]) => categories.value = newCategories;
 
   return {
     getCategory,
