@@ -5,11 +5,6 @@ export const account = {
   component: Layout,
   children: [
     {
-      path: "",
-      name: "Account",
-      component: () => import("@/views/Account/Account.vue"),
-    },
-    {
       path: "login",
       name: "Login",
       component: () => import("@/views/Login/Login.vue"),
